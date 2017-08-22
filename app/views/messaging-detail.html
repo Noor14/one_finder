@@ -1,0 +1,30 @@
+<loading-show ng-model="show_loading"></loading-show>
+<header class="chat-header">
+<!--     <span>Clarification Request</span> -->
+    <h2 class="text-capitalize text-center">{{conversation.job.title}}</h2>
+<!--     <h2>{{status}}</h2> -->
+        <!--<span class="pull-left">-->
+            <!--<a  href="" ng-click="prev_page()"> &#8926; Prev</a>-->
+        <!--</span>-->
+        <!--<span class="pull-right" ng-if="current_page > 1">-->
+            <!--<a href="" ng-click="next_page()">Next</a>-->
+        <!--</span>-->
+</header>
+<ul class="chat list-none">
+        <li ng-repeat = "d in myData" ng-class="user.id === d.userId ? '' : 'sender'">
+            <div class="text">
+                <p>
+                    {{d.body}}
+                </p>
+                <p class="pull-right msg-date">
+                    {{d.createdAt | date:"dd/MM/yyyy, h:mm a"}}
+                </p>
+            </div>
+        </li>
+</ul>
+<form class="chat-box" ng-submit=send_message(input_text)>
+    <fieldset>
+        <input type="text" placeholder="Type message..." ng-model="input_text">
+        <input type="submit" value="Send" ng-disabled="wrangler.disconnected">
+    </fieldset>
+</form>

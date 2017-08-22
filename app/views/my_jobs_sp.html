@@ -1,0 +1,108 @@
+<loading-show ng-model="loader"></loading-show>
+<article id="content">
+	<header class="heading-area">
+    	<h1>My Jobs</h1>
+  	</header>
+  	<div class="twocols">
+	  	<div class="col" ng-if="!is_user_employee">
+	      	<div class="side-widget">
+		      	<form class="filter-form" name="filterJobsSPForm" ng-submit="filter_the_jobs(filt)">
+		      		<fieldset>
+			      		<div class="side-sec">
+							<h2>Filter by Status</h2>
+		              		<div class="filter-row">
+	    						<select ng-model="filter.status" class="form-control"
+	    							ng-options="status.id as status.val for status in job_status"></select>
+		              		</div>
+		            	</div>
+			            <div class="side-sec">
+		               		<div class="filter-row">
+		                	<input type="submit" class="btn btn-block btn-primary" value="Filter">
+		              		</div>
+		            	</div>
+		            	<div class="side-sec" ng-hide="filter.status === undefined">
+		               		<div class="filter-row">
+		                		<input type="button" class="btn btn-block btn-danger" value="Clear Filter" ng-click="clear_filter()">
+		              		</div>
+		            	</div>
+		      		</fieldset>
+		      	</form>
+	      	</div>
+	  	</div>
+	  	<div class="col" ng-if="is_user_employee">
+	  		<div class="side-widget">
+	  			<form class="filter-form" name="filterJobsSPForm" ng-submit="filter_the_jobs(filt)">
+		      		<fieldset>
+			      		<div class="side-sec">
+							<h2>Filter by Status</h2>
+		              		<div class="filter-row">
+	    						<select ng-model="filter.status" class="form-control"
+	    							ng-options="status.id as status.val for status in job_status_employee"></select>
+		              		</div>
+		            	</div>
+			            <div class="side-sec">
+		               		<div class="filter-row">
+		                	<input type="submit" class="btn btn-block btn-primary" value="Filter">
+		              		</div>
+		            	</div>
+		            	<div class="side-sec" ng-hide="filter.status === undefined">
+		               		<div class="filter-row">
+		                		<input type="button" class="btn btn-block btn-danger" value="Clear Filter" ng-click="clear_filter()">
+		              		</div>
+		            	</div>
+		      		</fieldset>
+
+	  			</form>
+	  		</div>
+	  	</div>
+	  	<div class="col">
+	    	<ul class="widgets list-none jobs-list">
+		        <li ng-repeat="job in my_jobs">
+					<div class="item-holder">
+						<a ui-sref="app.job_detail({id: job.id})">
+							<strong class="title text-capitalize">
+								{{job.title || "Job Title Not provided"}}
+							</strong>
+							<div class="img-holder" ng-style="{'background-image':'url(images/placeholder.jpg)','background-repeat': 'no-repeat','background-size':'cover','background-position': 'center center'}">
+                				<div ng-style="{'background-image': 'url({{ job.photos[0].url }})','height':'100%','background-size':'cover','background-repeat': 'no-repeat','background-size': 'cover','background-position': 'center center', 'height':'250px'}">
+                				</div>
+						  	</div>
+						</a>
+						<div class="service-info">
+							<div class="img-holder">
+						    	<img ng-src="{{job.postedBy.picture || 'images/user_placeholder.jpeg'}}" alt="img">
+						  	</div>
+						  	<div class="txt">
+						    	<strong class="text-capitalize">{{job.postedBy.firstname}}</strong>
+						    	<p>{{job.location.city.name}} , {{job.location.country.name}}</p>
+						  	</div>
+						</div>
+						<ul class="service-status list-none" ng-class="{'half-status' : !job.averageBid || !job.status || !job.bidCount}">
+							  <li>
+						    	<span>{{job.averageBid}}</span>
+						    	<p>Avg Bid</p>
+						  	</li>
+							  <li>
+						    	<span>{{get_status(job.status)}}</span>
+						    	<p>Status</p>
+						  	</li>
+                <li ng-if="!job.bidCount == ''">
+                  <span>{{job.bidCount}}</span>
+                  <p>Number of Bids</p>
+                </li>
+						</ul>
+					</div>
+		        </li>
+	      	</ul>
+	      	<div class="text-center" ng-show="totalRecords === 0">
+	      		No Results!
+	      	</div>
+	  		<div class="text-center" ng-show="totalRecords > 0">
+        		<ul uib-pagination ng-change="change_page()" total-items="totalRecords" ng-model="currentPage"
+            		items-per-page="itemsPerPage" class="pagination-md" boundary-links="true"
+            		num-pages="numPages">
+          		</ul>
+      		</div>
+	  	</div>
+  	</div>
+</article>

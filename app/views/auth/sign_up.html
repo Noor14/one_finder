@@ -1,0 +1,27 @@
+<div class="login-holder">
+    <div class="box-holder">
+        <div class="box-area">
+            <div class="box">
+                <img src="images/login-logo.png" alt="ONEfindr" class="login_logo signup_form">
+                <h2>Signup</h2>
+                <form name="signupForm" ng-submit="submit_signup(signup,info)" class="login-form">
+                    <fieldset>
+                        <input placeholder="First Name *" required type="text" ng-model="info.firstname">
+                        <input placeholder="Last Name *" required type="text" ng-model="info.lastname">
+                        <input placeholder="Email *" required type="email" ng-model="signup.email">
+                        <input placeholder="Password *" required type="password" ng-model="signup.password">
+                        <input placeholder="Re-Enter Password *" required type="password" ng-model="signup.confirmPassword">
+                        <!--
+                        <input placeholder="Contact No" type="text" ng-model="info.phone">
+                        <input placeholder="Business Name"  type="text" ng-model="info.businessName"> 
+                        -->
+                        <div class="links">
+                            <a ui-sref="auth.login">Already have an account? Login</a>
+                        </div>
+                        <input value="Submit" type="submit" ng-disabled="form_submit">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<loading-show ng-model="loader" ng-if="loader"></loading-show>
+<div class="create_job_form">
+    <div class="box">
+        <form class="selection-form document_update_form job_notes_form" name="addJobForm" ng-submit="addJob(new_job)">
+            <fieldset>
+                <div class="client-widget">
+                    <div class="client-fields add">
+                        <!-- Category Selection Step -->
+                        <div ng-include
+                            src="'views/partials/job-create/step1_category.html'" ng-show="job_create_step1"></div>
+                        <!-- Category Service Step -->
+                        <div ng-include
+                            src="'views/partials/job-create/step2_category_service.html'"  ng-show="job_create_step2"></div>
+                        <!-- Category Service Step -->
+                        <div ng-include
+                            src="'views/partials/job-create/step2_category_service_question.html'"  ng-show="job_create_step2a"></div>
+                        <!-- Job Description Step -->
+                        <div ng-include
+                            src="'views/partials/job-create/step3_description.html'"  ng-show="job_create_step3"></div>
+                        <!-- Locations list -->
+                        <div ng-include
+                            src="'views/partials/job-create/step4_locations.html'"  ng-show="job_create_step4"></div>
+                        <!-- Vehicle list -->
+                        <div ng-include
+                            src="'views/partials/job-create/step5_vehicles.html'"  ng-show="job_create_step5"></div>
+                        <!-- Schedule  -->
+                        <div ng-include
+                            src="'views/partials/job-create/step6_schedule.html'"  ng-show="job_create_step6"></div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

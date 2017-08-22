@@ -1,0 +1,54 @@
+<div class="tab" id="public-profile">
+
+    <div class="visual-area">
+        <div class="visual">
+            <div class="brand-img">
+                <img ng-src="{{ user.serviceProviderDetails.identification || 'images/placeholder.jpg' }}">
+            </div>
+            <span class="name">
+                {{user.businessName}}
+            </span>
+            <span>
+                <em>{{user.serviceProviderDetails.registeredAddress}}</em>
+            </span>
+            <span 
+                uib-rating ng-model="user.averageRating" max="5" 
+                read-only="true" aria-labelledby="default-rating"
+                ng-if="user_role === 'service_provider' && user.serviceProviderDetails.type === 1">
+            </span>
+            <span>
+                <button class="btn btn-primary btn-block" ng-click="switch_user_role()">
+                    Switch User Role
+                </button>
+            </span>
+        </div>
+        <ul class="tech-info list-none">
+            <div ng-if="user_role === 'service_provider'">
+                <li>{{user.skills.length || '0'}}<span>Skills</span></li>
+                <li>{{user.reviewsCount || '0'}}<span>Reviews</span></li>                
+            </div>
+            <li>{{serviceProviderDashboard.jobsAwarded || '0'}}<span>Jobs Awarded</span></li>            
+        </ul>
+    </div>
+
+    <div class="reviews-holder row" ng-if="user_role === 'service_provider' && user.serviceProviderDetails">
+        <div class="col-md-6">
+            <div class="side-widget">
+                <h2>Skills</h2>
+                <p ng-if="user.skills == 0" class="text-center">You don't have any skills</p>
+                <ul class="list-none" ng-if="user.skills" ng-repeat="skill in user.skills">
+                    <li><a href="">{{skill.name}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="side-widget">
+                <h2>Operates In</h2>
+                <ul class="list-none" ng-repeat="city in user.citiesOfOperation">
+                    <li><a href="">{{city.name}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</div>

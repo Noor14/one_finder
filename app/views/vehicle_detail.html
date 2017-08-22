@@ -1,0 +1,62 @@
+<loading-show ng-model="loader"></loading-show>
+<article id="content" class="vehicle_detail">
+    <header class="heading-area text-capitalize">
+        <a href="" class="btn edit_btn btn-danger" ng-click="remove_vehicle()">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            Delete
+        </a>
+        <a href="" class="btn edit_btn btn-primary" ng-click="edit_vehicle_detail()">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            Edit
+        </a>
+        <h1>Vehicle detail</h1>
+    </header>
+    <div class="visual-area">
+        <div class="visual" style="padding: 49px 25px !important;">
+            <div class="brand-img">
+                <img ng-src="{{ edit_vehicle.picture || 'images/placeholder.jpg' }}">
+            </div>
+            <span class="name">{{edit_vehicle.name}}</span>
+        </div>
+        <ul class="tech-info list-none text-capitalize">
+            <li>{{edit_vehicle.name || 'Not Provided'}} <span>Name</span></li>
+            <li>{{edit_vehicle.make || 'Not Provided'}}<span>Make</span></li>
+            <li>{{edit_vehicle.model || 'Not Provided'}} <span>Model</span></li>
+        </ul>
+    </div>
+    <div class="edit_vehicle_block" ng-if="edit_vehicle_block">
+        <div class="visual-area">
+            <div class="visual" style="width: 100% !important;">
+                <form class="selection-form document_update_form" ng-submit="submit_vehicle_update()">
+                    <fieldset>
+                        <div class="client-widget">
+                            <a href="" class="btn edit_btn btn-default" ng-click="cancel_vehicle_edit()">
+                                <i class="fa fa-ban" aria-hidden="true"></i>
+                                Cancel
+                            </a>
+                            <h2>Edit {{edit_vehicle.name}}</h2>
+                            <div class="client-fields add">
+                                <div class="widget-txt">
+                                    <input placeholder="Vehicle Name*" type="text" ng-model="edit_vehicle.name" required
+                                        class="text-center">
+                                    <input placeholder="Model No" type="text" ng-model="edit_vehicle.model" class="text-center">
+                                    <input placeholder="Made By*" type="text"
+                                        ng-model="edit_vehicle.make" required class="text-center">
+                                    <span class="p_img_con">
+                                      <img ng-src="{{edit_vehicle.picture || 'images/placeholder.jpg'}}" class="img-responsive" style="width: 300px;margin: 0 auto;">
+                                    </span>
+
+                                    <div class="btn-file" style="width: 100%">
+                                        <input value="upload Picture" type="file" ng-model='edit_vehicle.pictureId' base-sixty-four-input class="text-center" ng-change="new_vehicle_pic(edit_vehicle.pictureId)">
+                                        Upload Picture
+                                    </div>
+                                </div>
+                                <input type="submit" value="Done Editing">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</article>

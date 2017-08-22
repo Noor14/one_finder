@@ -1,0 +1,27 @@
+<div class="tab" id="employees_block">
+    <div class="info-row">
+		<table class="table table-bordered">
+	    	<thead>
+	        	<tr>
+	        		<th class="text-center">Message</th>
+	        		<th class="text-center">Time </th>
+	        	</tr>
+	      	</thead>
+	      	<tfoot>
+	      		<tr class="text-center">
+			        <ul uib-pagination
+			            ng-change="change_page_notif(current_page_notif)" total-items="total_records_notif" ng-model="current_page_notif"
+			            items-per-page="items_per_page_notif" class="pagination-md" boundary-links="true"
+			            num-pages="num_pages_notif">
+			        </ul>
+		        </tr>
+	      	</tfoot>
+	      	<tbody>
+	        	<tr ng-repeat="em in notifications">
+	        	  	<td class="text-center">{{em.message}}</td>
+	        	  	<td class="text-center">{{em.timestamp  | date:"MM/dd/yyyy"}}</td>
+	        	</tr>
+	      	</tbody>
+	    </table>
+    </div>
+</div>

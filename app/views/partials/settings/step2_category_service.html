@@ -1,0 +1,19 @@
+<div class="job_create_step2">
+    <h2>Services</h2>
+    <div class="widget-txt location_widget_block">
+        <ul class="list-unstyled">
+            <li ng-repeat="service in services">
+                <label class="text-capitalize"
+                    ng-class="{selectedlabel: $parent.new_job.serviceId == service.id}">
+                <input type="radio" name="service_name" ng-value="service.id"
+                    ng-model="$parent.new_job.serviceId" ng-click="enable_processbtn2()">
+                <span>{{service.name}}</span>
+                </label>
+            </li>
+        </ul>
+        <a href="" class="btn btn-primary btn-block text-bold text-uppercase"
+            ng-click="skip_job_process_step2()" ng-disabled="process_btn2">
+        Proceed
+        </a>
+    </div>
+</div>

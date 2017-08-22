@@ -1,0 +1,36 @@
+<div class="job_create_step2">
+    <h2>Service Questions</h2>
+    <div class="widget-txt service-questions">
+        <ul class="list-unstyled">
+        	<li class="list-item" ng-repeat="ques in questions">
+			    <div>
+			        <label>
+			        	{{ques.body}} {{ques.required ? "*": ""}}
+			        	<i class="fa fa-times" ng-click="clear_answer(ques)" ng-if="!ques.required"></i>
+			        </label>
+			        <div ng-repeat="answer in ques.answers">
+			            <label class="radio-inline service-question-answer">
+			                <input type="radio" name="{{answer}}" ng-model="ques.ans"
+			                ng-value="answer" ng-change="enable_processbtn2a()">
+			                {{answer.body}}
+			            </label>
+			        </div>
+			    </div>
+        	</li>
+        </ul>
+        <div class="row">
+        	<div class="col-md-6">
+		        <a href="" class="btn btn-primary btn-block text-bold text-uppercase"
+		            ng-click="go_back_step2_a()">
+		        Go Back
+		        </a>
+        	</div>
+        	<div class="col-md-6">
+		        <a href="" class="btn btn-primary btn-block text-bold text-uppercase"
+		            ng-click="skip_job_process_step2a()" ng-disabled="process_btn2a">
+		        Proceed
+		        </a>
+        	</div>
+        </div>
+    </div>
+</div>

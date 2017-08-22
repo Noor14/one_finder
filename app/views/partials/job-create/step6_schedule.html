@@ -1,0 +1,85 @@
+<loading-show ng-model="show_loading"></loading-show>
+<div class="job_create_step6 calandar_box">
+    <h2>Job Schedule</h2>
+    <div class="widget-txt">
+        <div class="row_col clearfix">
+          <div class="half_col">
+            <h4>Bid Ending date</h4>
+            <div class="time_box">
+              {{new_job.biddingEnds | date : 'MMM dd, yyyy HH:mm a'}}
+            </div>
+            <p class="input-group">
+              <input type="text" class="form-control" datetime-picker="MM/dd/yyyy HH:mm"
+                     datepicker-options="dateOptions" ng-model="new_job.biddingEnds" name="biddingEnds"
+                     is-open="job_bid_datepicker.opened" ng-change="check_bid_date(new_job.biddingEnds)"
+                     style="margin: 0" required/>
+              <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                            ng-click="openbidCalendar($event, 'job_bid_datepicker')">
+                    <i class="fa fa-calendar"></i>
+                    </button>
+                    </span>
+            </p>
+            <div ng-messages="addJobForm.biddingEnds.$error"
+                 ng-show="addJobForm.biddingEnds.$touched && addJobForm.biddingEnds.$invalid">
+              <p ng-messages="required" class="text-danger">
+                biddingEnds is required
+              </p>
+            </div>
+          </div>
+            <div class="half_col">
+                <h4>Job Start Date</h4>
+                <div class="time_box">
+                    {{new_job.schedule | date : 'MMM dd, yyyy HH:mm a'}}
+                </div>
+                <p class="input-group">
+                    <input  type="text" class="form-control" datetime-picker="MM/dd/yyyy HH:mm"
+                        datepicker-options="dateOptions" ng-model="new_job.schedule" name="jobschedule"
+                        is-open="job_schedule_datepicker.opened" ng-change="check_start_date(new_job.schedule)"
+                        style="margin: 0" required/>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                        ng-click="openscheduleCalendar($event, 'job_schedule')">
+                    <i class="fa fa-calendar"></i>
+                    </button>
+                    </span>
+                </p>
+                <div ng-messages="addJobForm.jobschedule.$error"
+                    ng-show="addJobForm.jobschedule.$touched && addJobForm.jobschedule.$invalid">
+                    <p ng-messages="required" class="text-danger">
+                        job Starting Date is required
+                    </p>
+                </div>
+            </div>
+
+            <div class="danger-text text-center clearfix" ng-if="invalid_bid" style="color:#FF0000">
+                <p>Please Select Correct Date and Time.Bidding Date Cann't be lower then Job start Date</p>
+            </div>
+        </div>
+        <div class="row-col clearfix">
+            <div class="form-group flexibility_box">
+                <label class="col-sm-2 control-label text-capitalize">Flexibility*</label>
+                <div class="col-sm-10">
+                    <select name="flexibility" id="flexibility" class="form-control flexibility_select"
+                        ng-options="option.id as option.name for option in flexibility_options"
+                        ng-model="new_job.flexibility" required></select>
+                    <div ng-messages="addJobForm.flexibility.$error"
+                        ng-show="addJobForm.flexibility.$touched && addJobForm.flexibility.$invalid">
+                        <p ng-messages="required" class="text-danger">flexibility is required</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="" class="btn btn-primary btn-block text-bold text-capitalize last-back-step"
+                    ng-click="go_back_step_last()">
+                    Go Back
+                </a>
+            </div>
+            <div class="col-md-6">
+                <input type="submit" class="btn btn-primary btn-block text-bold text-capitalize" value="POST JOB" ng-disabled="addJobForm.$invalid || invalid_bid || submitting" style="margin:0 !important;padding: 6px 12px; height: auto;font-size: 14px !important;">
+            </div>
+        </div>
+    </div>
+</div>

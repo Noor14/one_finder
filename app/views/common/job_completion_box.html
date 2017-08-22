@@ -1,0 +1,52 @@
+<div class="dashboard-box-area" ng-controller="JobdetailCtrl">
+    <div class="box">
+        <form class="selection-form document_update_form job_notes_form" ng-submit="complete_job()">
+            <fieldset>
+                <div class="client-widget">
+                    <h2>Completion Details</h2>
+                    <div class="client-fields add">
+                        <div class="widget-txt">
+                            <label for="completionNote">Completion Note</label>
+                            <textarea rows="5" cols="10" id="completionNote" ng-model="job_notes.completionNote"></textarea>
+                          <div class="row">
+                            <div class="form-group clearfix">
+                              <div class="col-md-9">
+                                <div class="row">
+                                  <div class="col-md-8">
+                                    <input type="text" id="uploadFile" placeholder="Choose File" disabled="disabled" ng-model="job_notes.photo.filename"/>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="fileUpload btn btn-primary btn-block">
+                        <span style="min-width: 100% !important;color: #fff;"><i class="fa fa-upload" aria-hidden="true"></i>
+ Upload</span>
+                                      <input id="uploadBtn" type="file" class="upload" ng-model="job_notes.photo"
+                                             base-sixty-four-input/>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <button class="btn btn-primary btn-block file_add" ng-click="add_notes_photo(job_notes.photo)" type="button">
+                                  <i class="fa fa-plus"></i> Add
+                                </button>
+                              </div>
+                            </div>
+                            <div class="form-group clearfix">
+                              <ul class="list-unstyled job_photos_list">
+                                <li ng-repeat="file in job_notes.photos"  class="gallery-box" style="display: inline-block;vertical-align: middle">
+                                  <img class="img center-block img-responsive" ng-src="data:image/{{file.filetype}};base64,{{file.base64}}" style="max-height: 90px;">
+                                  <button class="btn btn-danger btn-block btn-group" ng-click="remove_notes_photo($index)" type="button">
+                                    <i class="fa fa-minus"></i>
+                                  </button>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

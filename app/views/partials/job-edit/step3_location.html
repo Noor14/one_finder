@@ -1,0 +1,42 @@
+<div class="job_create_step4">
+    <h2>Select your location</h2>
+    
+    <div ng-hide="change_location">
+        <span class="loc-name">
+            {{job.location.name}}
+        </span>
+        <span class="loc-detail">
+            {{job.location.apartment}}, {{job.location.streetAddress}}, {{job.location.city.name}}
+        </span>
+        <button type="button" class="btn btn-danger" ng-click="change_job_location()">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
+
+    <div ng-show="change_location">
+        <div class="widget-txt location_widget_block">
+            <ul class="list-unstyled">
+                <li ng-repeat="location in locations">
+                    <label ng-class="{selectedlabel: new_location.id == location.id}">
+                        <input  
+                                type="radio" 
+                                name="location_name" 
+                                ng-value="location" 
+                                ng-change="set_location(location)"
+                                ng-model="new_location">
+                        <span class="loc-name">
+                            {{location.name}}
+                        </span>
+                        <span class="loc-detail">
+                            {{location.apartment}}, {{location.streetAddress}}, {{location.city.name}}
+                        </span>
+                    </label>
+                </li>
+            </ul>
+        </div>        
+    </div>
+    <a class="btn btn-primary btn-block text-bold text-uppercase"
+        ng-click="go_job_edit_step4()" ng-disabled="!step3_valid()">
+        Proceed
+    </a>
+</div>

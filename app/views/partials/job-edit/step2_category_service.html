@@ -1,0 +1,59 @@
+<div class="job_create_step2">
+    <h2>Services</h2>
+
+  <div class="widget-txt location_widget_block" ng-hide="change_service">
+    <ul class="list-unstyled">
+      <li>
+        <label class="text-capitalize">
+          <button type="button" class="btn btn-danger pull-right" ng-click="change_job_service()">
+            <i class="fa fa-times"></i>
+          </button>
+          <span>{{job.service.name}}</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+    <!--<div ng-hide="change_service">-->
+        <!--<br>-->
+            <!--{{job.service.name}}-->
+            <!--<button type="button" class="btn btn-danger" ng-click="change_job_service()">-->
+                <!--<i class="fa fa-times"></i>-->
+            <!--</button>-->
+        <!--<br>-->
+    <!--</div>-->
+    <div class="client-fields" ng-show="change_service">
+        <div class="cp-con">
+            <span>Choose Category</span>
+            <select ng-model="category" class="form-control m-b parent_cat"
+                ng-options="cat as cat.name for cat in cats"
+                ng-change="get_skills(category)"/>
+        </div>
+        <div class="cp-con" ng-show="category.hasChildren">
+            <span>Choose Sub Category</span>
+            <select ng-model="category_child" class="form-control m-b parent_cat"
+                ng-options="cat_child as cat_child.name for cat_child in category.children"
+                ng-change="get_skills(category_child)"/>
+        </div>
+        <div class="cp-con" ng-show="category_child.hasChildren">
+            <span>Choose Another Sub Category</span>
+            <select ng-model="category_grand_child" class="form-control m-b parent_cat"
+                ng-options="cat as cat.name for cat in category_child.children"
+                ng-change="get_skills(category_grand_child)"/>
+        </div>
+        <div class="cp-con" ng-show="skills.length === 0">
+            <span> No services for this category </span>
+        </div>
+        <div class="cp-con" ng-show="skills.length > 0">
+            <span>Choose Services</span>
+            <select multiple
+                ng-model="selected_skills"
+                class="form-control m-b parent_cat"
+                ng-options="skill.id as skill.name for skill in skills"/>
+        </div>
+    </div>
+    <a href="" class="btn btn-primary btn-block text-bold text-uppercase"
+            ng-click="go_job_edit_step3()" ng-disabled="!step2_valid()">
+        Proceed
+    </a>
+</div>

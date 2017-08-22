@@ -1,0 +1,36 @@
+<div class="tab" id="basic_details">
+    <div class="info-row">
+        <div class="info-content">
+            <form name="basicInfoForm" class="edit_form" ng-submit="submit_info_form(edit_user)">
+                <input ng-model="edit_user.firstname" type="text" placeholder="First Name" md-autofocus>
+                <input ng-model="edit_user.lastname" placeholder="Last Name" type="text">
+                <input ng-model="edit_user.phone" placeholder="Phone" type="text">
+                <input ng-model="edit_user.businessName" placeholder="Business Name" type="text">
+                <input ng-model="edit_user.email" placeholder="email" type="email">
+                <input value="Update" type="submit" ng-disabled="form_submit">
+            </form>
+        </div>
+    </div>
+    <div class="info-row">
+        <div class="info-content">
+            <h2>Update Profile Picture</h2>
+            <form name="basicInfoForm" class="edit_form" ng-submit="submit_updated_pic(new_p_picture)">
+                <div class="row text-center">
+                    <span class="p_img_con">
+                        <img ng-src="{{user.picture || 'images/user_placeholder.jpeg'}}" class="img-responsive">
+                    </span>
+                    <div class="btn-file" style="vertical-align: top;">
+                        <input  value="upload" type="file" ng-model='new_p_picture' 
+                                base-sixty-four-input ng-change="new_profile_pic(new_p_picture)">
+                            Upload
+                    </div>
+                    <a  value="upload" type="file" class="btn btn-danger" ng-if="del_btn" 
+                        ng-click="remove_profile_pic()" style="padding: 9px;">
+                        Remove
+                    </a>
+                </div>
+                <input value="Update" type="submit" ng-disabled="form_submit">
+            </form>
+        </div>
+    </div>
+</div>

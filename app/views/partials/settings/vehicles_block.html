@@ -1,0 +1,30 @@
+<div class="tab vehicles_block" id="vehicles_block">
+    <div class="block-head text-center">
+        <h3>Vehicles</h3>
+        <a href="" class="add_vehicle_btn" ng-click="add_vehicle('vehicle_model')">Add Vehicle</a>
+    </div>
+    <div class="info-row">
+        <div class="info-content">
+            <ul class="widgets list-none jobs-list">
+                <li ng-repeat="vehicle in vehicles">
+                    <div class="item-holder">
+                        <div class="img-holder">
+                            <a ui-sref="app.vehicle_detail({id: vehicle.id})">
+                                <div class="img-holder" ng-style="{'background-image':'url(images/placeholder.jpg)','background-repeat': 'no-repeat','background-size':'cover','background-position': 'center center'}">
+                                    <div ng-style="{'background-image': 'url({{ vehicle.picture}})','height':'100%','background-size':'cover','background-repeat': 'no-repeat','background-size': 'cover','background-position': 'center center', 'height':'250px'}">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="service-info text-capitalize">
+                            <div class="vehicle_name">{{vehicle.name}}</div>
+                            <div class="txt">
+                                <p>{{vehicle.make}}, {{vehicle.model}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

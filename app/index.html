@@ -1,0 +1,160 @@
+<!doctype html>
+<html ng-app="onefindrApp">
+<head>
+  <meta charset="utf-8">
+  <title>ONEFindr</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <meta name="google-signin-client_id" content="723104159784-g8l4ums5tt4oictjl1vpbkb6bst9k196.apps.googleusercontent.com">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel="shortcut icon" type="image/ico" href="favicon.png"/>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+  <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+  <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="styles/all.css">
+  <!-- <link rel="stylesheet" href="styles/font-awsome.css"> -->
+
+
+  <!-- endbuild -->
+</head>
+<body>
+<!--[if lte IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<div id="wrapper">
+  <div ui-view></div>
+</div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAE-qjawctgMAmc2i2-UsljSsVGAMU870I"
+        type="text/javascript"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- build:js(.) scripts/vendor.js -->
+
+<!--<script src='//maps.googleapis.com/maps/api/js?libraries=places&sensor=false'></script>-->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+<script src="bower_components/angular-base64-upload/src/angular-base64-upload.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
+<script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/flow.js/dist/flow.js"></script>
+<script src="bower_components/ng-flow/dist/ng-flow.js"></script>
+<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/markerclustererplus/src/markerclusterer.js"></script>
+<script src="bower_components/google-maps-utility-library-v3-markerwithlabel/dist/markerwithlabel.js"></script>
+<script src="bower_components/google-maps-utility-library-v3-infobox/dist/infobox.js"></script>
+<script src="bower_components/google-maps-utility-library-v3-keydragzoom/dist/keydragzoom.js"></script>
+<script src="bower_components/js-rich-marker/src/richmarker.js"></script>
+<script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="bower_components/angular-websocket/dist/angular-websocket.js"></script>
+<script src="bower_components/angular-actioncable/dist/angular-actioncable.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!-- libs customized for our use case -->
+<script src="scripts/lib/angular-base64-upload.js"></script>
+<script src="scripts/lib/angular-actioncable.js"></script>
+<!-- Anglar App Script -->
+<script src="scripts/app.js"></script>
+<script src="scripts/config.js"></script>
+<script src="scripts/services/user_service.js"></script>
+<script src="scripts/controllers/main_ctrl.js"></script>
+<script src="scripts/controllers/sidebar_ctrl.js"></script>
+<script src="scripts/services/map.service.js"></script>
+<script src="scripts/services/dashboard_service.js"></script>
+<script src="scripts/directives/header.js"></script>
+<script src="scripts/directives/sidebar.js"></script>
+<script src="scripts/directives/footer.js"></script>
+<script src="scripts/directives/loading.js"></script>
+<script src="scripts/services/auth/auth_service.js"></script>
+<script src="scripts/services/utilService.js"></script>
+<script src="scripts/services/info_service.js"></script>
+<script src="scripts/services/category_service.js"></script>
+<script src="scripts/services/country_cities_service.js"></script>
+<script src="scripts/services/document_service.js"></script>
+<script src="scripts/services/bidding_service.js"></script>
+<script src="scripts/services/editinfo_service.js"></script>
+<script src="scripts/services/skills_service.js"></script>
+<script src="scripts/services/jobs_service.js"></script>
+<script src="scripts/services/vehicle_service.js"></script>
+<script src="scripts/services/locations_service.js"></script>
+<script src="scripts/services/create_job_service.js"></script>
+<script src="scripts/services/serviceprovider_service.js"></script>
+
+<script src="scripts/controllers/auth/auth_ctrl.js"></script>
+<script src="scripts/controllers/dashboard_ctrl.js"></script>
+<script src="scripts/controllers/jobs_ctrl.js"></script>
+<script src="scripts/controllers/my_jobs_gu_ctrl.js"></script>
+<script src="scripts/controllers/my_jobs_sp_ctrl.js"></script>
+<script src="scripts/controllers/jobdetail_ctrl.js"></script>
+<script src="scripts/controllers/jobdetail_gu_ctrl.js"></script>
+<script src="scripts/controllers/job_dispute_create_gu_ctrl.js"></script>
+<script src="scripts/controllers/job_dispute_view_ctrl.js"></script>
+<script src="scripts/controllers/job_rate_ctrl.js"></script>
+<script src="scripts/controllers/job_assign_ctrl.js"></script>
+<script src="scripts/controllers/job_start_ctrl.js"></script>
+<script src="scripts/controllers/job_completion_details_ctrl.js"></script>
+<script src="scripts/controllers/job_bids_ctrl.js"></script>
+<script src="scripts/controllers/job_edit_ctrl.js"></script>
+
+<script src="scripts/controllers/messaging_ctrl.js"></script>
+<script src="scripts/controllers/messaging_detail_ctrl.js"></script>
+
+<script src="scripts/controllers/vehicle_ctrl.js"></script>
+<script src="scripts/controllers/vehicle_ctrl_settings.js"></script>
+<script src="scripts/controllers/create_job_ctrl.js"></script>
+<script src="scripts/controllers/edit_location_ctrl.js"></script>
+<script src="scripts/controllers/reports_ctrl.js"></script>
+<script src="scripts/services/reports_service.js"></script>
+<script src="scripts/services/ratings_service.js"></script>
+<script src="scripts/services/notification_service.js"></script>
+<script src="scripts/services/dispute_service.js"></script>
+<script src="scripts/services/conversation_service.js"></script>
+<script src="scripts/controllers/job_transaction_result.js"></script>
+<script src="scripts/controllers/choose_user_role_ctrl.js"></script>
+<script src="scripts/controllers/setting_ctrl.js"></script>
+
+<script src="scripts/controllers/settings/basic_details_ctrl.js"></script>
+<script src="scripts/controllers/settings/change_password_ctrl.js"></script>
+<script src="scripts/controllers/settings/cities_operation_ctrl.js"></script>
+<script src="scripts/controllers/settings/document_ctrl.js"></script>
+<script src="scripts/controllers/settings/employee_ctrl.js"></script>
+<script src="scripts/controllers/settings/employment_invite_ctrl.js"></script>
+<script src="scripts/controllers/settings/notification_ctrl.js"></script>
+<script src="scripts/controllers/settings/public_profile_ctrl.js"></script>
+<script src="scripts/controllers/settings/services_offered_ctrl.js"></script>
+<script src="scripts/controllers/settings/vehicles_ctrl.js"></script>
+<script src="scripts/controllers/settings/location_ctrl.js"></script>
+<script src="scripts/controllers/settings/location_detail_ctrl.js"></script>
+<script src="scripts/controllers/settings/serviceprovider_ctrl.js"></script>
+<script src="scripts/controllers/settings/service_provider_doc_ctrl.js"></script>
+<!-- endbuild -->
+
+
+</body>
+</html>

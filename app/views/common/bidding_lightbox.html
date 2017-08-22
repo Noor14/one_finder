@@ -1,0 +1,81 @@
+<div class="widgets light-box-widgets" >
+  <div class="item-holder">
+    <strong class="title text-capitalize">
+      {{my_job_detail.title}}
+    </strong>
+    <div class="service-info">
+      <div class="img-holder">
+        <img ng-src="{{my_job_detail.postedBy.picture || 'images/user_placeholder.jpeg'}}" alt="Description">
+      </div>
+      <div class="txt">
+
+        <strong class="text-capitalize">
+          {{my_job_detail.postedBy.firstname || 'Your Name'}}
+        </strong>
+        <p>
+          {{my_job_detail.location.city.name || 'Your City'}} , {{my_job_detail.location.country.name || 'Your
+          Country'}}
+        </p>
+      </div>
+    </div>
+    <ul class="service-status list-none">
+      <li class="bid_avg">
+        <span>{{my_job_detail.averageBid | currency: "AED " : 2 || '0'}}</span>
+        <p>Current Bid</p>
+      </li>
+      <li>
+        <span>{{my_job_detail.bidCount}}</span>
+        <p>Total Bids</p>
+      </li>
+      <li>
+        <span class="text-capitalize">{{my_job_detail.end_time || '0'}}</span>
+        <p>Time Left</p>
+      </li>
+    </ul>
+    <!-- NEW BID -->
+    <form name="addBidForm" class="selection-form" ng-submit="submit_job_bid($state.params.id)" ng-if="my_job_detail.myBid == null">
+      <fieldset>
+        <div class="client-fields">
+          <input type="number" placeholder="Bid *" ng-model="new_bid.bidValue" min="1" step="0.1" required>
+          <textarea placeholder="Offer Description" rows="6" cols="50" ng-model="new_bid.offer"></textarea>
+          <div class="input-group date-feild">
+            <label>Proposed Schedule</label>
+            <input type="text" readonly class="form-control" uib-datepicker-popup="dd-MM-yyyy"
+                   ng-model="new_bid.proposedSchedule" is-open="isOpen1.popup" ng-required="true"
+                   placeholder="Please select date " enable-time="false"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openCalendar1($event, prop)">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </span>
+          </div>
+          <input type="submit" class="btn-mark" value="Place Bid" ng-disabled="editBidForm.$invalid || edit_bid_submit">
+        </div>
+      </fieldset>
+    </form>
+    <!-- EDIT BID -->
+    <form name="editBidForm" class="selection-form" ng-submit="edit_job_bid()" ng-if="my_job_detail.myBid != null">
+      <fieldset>
+        <div class="client-fields">
+          <input type="number" placeholder="Bid *" ng-model="edit_bid.bidValue" min="1" step="0.1" required>
+          <textarea placeholder="Offer Description" rows="6" cols="50" ng-model="edit_bid.offer"></textarea>
+          <div class="input-group date-feild">
+            <label>Proposed Schedule</label>
+            <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"
+                   ng-model="edit_bid.proposedSchedule" is-open="isOpen2.popup" ng-required="true"
+                   placeholder="Please select date" enable-time="false" readonly/>
+            <span class="input-group-btn" >
+              <button type="button" class="btn btn-default" ng-click="openCalendar2($event, prop)">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </span>
+          </div>
+          <input type="submit" class="btn-mark" value="Edit Bid" ng-disabled="editBidForm.$invalid || edit_bid_submit" style="margin-bottom: 5px;">
+        </div>
+      </fieldset>
+    </form>
+    <a ng-click="delete_bid()" class="btn-mark full-width-btn" ng-if="my_job_detail.myBid != null">
+      Delete Bid
+    </a>
+  </div>
+</div>

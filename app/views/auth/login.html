@@ -1,0 +1,32 @@
+<loading-show ng-model="loader"></loading-show>
+<div class="login-holder">
+    <div class="box-holder">
+        <div class="box-area">
+            <div class="box">
+                <img src="images/login-logo.png" alt="ONEfindr" class="login_logo">
+                <h2>Login</h2>
+                <div class="form-con" style="border: 1px solid #ddd;overflow: hidden;padding: 20px;">
+                    <form ng-submit="submit_login(login)" class="login-form" style="border: none !important;padding: 0">
+                        <fieldset>
+                            <input placeholder="Email" type="email" ng-model="login.email" required>
+                            <input placeholder="Password" type="password" ng-model="login.password" required>
+                            <div class="links">
+                                <a ui-sref="auth.forgot_password">Forgot Password?</a>
+                                <a ui-sref="auth.signup">Register</a>
+                            </div>
+                            <input value="Submit" type="submit">
+                        </fieldset>
+                    </form>
+                    <div class="social_login_container">
+                        <a href="" class="social_btn" ng-click="fb_login()">
+                            <img src="images/btn-fb.jpg" alt="Description" class="img-responsive">
+                        </a>
+                        <a href="" class="social_btn" ng-click="google_login()" data-onsuccess="google_login()">
+                            <img src="images/btn-google.jpg" alt="Google_signin" class="img-responsive">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

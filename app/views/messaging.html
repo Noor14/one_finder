@@ -1,0 +1,49 @@
+<loading-show ng-model="show_loading"></loading-show>
+<article id="content">
+    <header class="heading-area">
+        <h1>Messaging</h1>
+    </header>
+    <div class="twocols msgs">
+        <div class="col">
+            <div class="side-widget">
+                <div class="tabset">
+
+                  <div class="search-box">
+                    <div class="search_ico"></div>
+                    <input placeholder="Search" type="text" ng-model="filterTxn.otherParty.firstname">
+                  </div>
+                    <!--<ul class="tabs list-none">-->
+                        <!--<li class="" style="width: 100%">-->
+                            <!--<a href="">Jobs</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <div class="tab-content">
+                        <div id="jobs" class="tab">
+                            <ul class="list-none reviews side-chat inbox_list">
+                                <li ng-repeat = "convo in conversations | filter: filterTxn">
+                                    <div ng-click="message_detail(convo)">
+                                        <div class="conv_date_img">
+                                          <div class="img-holder">
+                                            <img ng-src="{{convo.otherParty.picture || 'images/placeholder.jpg'}}" alt="Description" width="39px" height="39px">
+                                          </div>
+                                          <div class="conv_date">
+                                            <span>{{convo.updatedAt | date:"h:mma"}}</span>
+                                          </div>
+                                        </div>
+                                        <div class="text">
+                                            <h3 class="text-capitalize">{{convo.otherParty.firstname + ' ' + convo.otherParty.lastname}}</h3>
+                                            <strong class="text-capitalize">{{convo.job.title}}</strong>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div ui-view="message-detail"></div>
+        </div>
+    </div>
+</article>

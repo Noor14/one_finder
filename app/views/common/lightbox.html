@@ -1,0 +1,132 @@
+<div class="dashboard-box-area" ng-controller="serviceproviderCtrl">
+  <div class="box">
+    <form class="selection-form" ng-submit="submit_service_provider()">
+      <fieldset>
+        <div class="client-widget" ng-class="tab1">
+          <h2>Registered Address</h2>
+          <div class="client-fields">
+            <input type="text" placeholder="Suite No." ng-model="serviceProviderDetails.suite">
+            <input type="text" placeholder="Building" ng-model="serviceProviderDetails.building">
+            <input type="text" placeholder="Street Address" ng-model="serviceProviderDetails.street">
+            <select id="country-id" ng-model="serviceProviderDetails.countryId"
+                    ng-options="opt.id as opt.name for opt in countries" name="countries"
+                    ng-change="get_cities(serviceProviderDetails.countryId)"></select>
+
+            <select id="city-id" ng-model="serviceProviderDetails.cityId"
+                    ng-options="opt.id as opt.name for opt in cities" name="cities"></select>
+
+            <strong class="caution">Please upload a proof of address such as a utility bill.</strong>
+            <div class="row">
+              <span>Proof of Address</span>
+              <div class="btn-file">
+                <input value="upload" type='file' ng-model='addressProof.input' base-sixty-four-input>
+                Upload
+              </div>
+            </div>
+            <a class="btn-proceed" ng-click="goto_type_selection()">Proceed</a>
+          </div>
+        </div>
+        <div class="client-widget" ng-class="tab2">
+          <h2>Business Type</h2>
+          <div class="widget-text ">
+            <div class="col">
+              <input id="company" name="group1" type="radio" ng-click="goto_company_reg_form()">
+              <label for="company">
+                <img src="images/img12.png" alt="Description">
+                <a href="#">Company</a>
+              </label>
+            </div>
+            <div class="col">
+              <input id="freelancer" name="group1" type="radio" ng-click="goto_freelancer_reg_form()">
+              <label for="freelancer">
+                <img src="images/img13.png" alt="Description">
+                <a href="#">Freelancer</a>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="client-widget" ng-class="company_reg_form">
+          <h2>Company Registration</h2>
+          <div class="client-fields add">
+            <div class="widget-txt">
+              <div class="row">
+                <span>Trade License</span>
+                <div class="btn-file">
+                  <input value="upload" type="file" ng-model='trade.input' base-sixty-four-input>
+                  Upload
+                </div>
+              </div>
+              <div class="row">
+                <span>Trade Insurance</span>
+                <div class="btn-file">
+                  <input value="upload" type="file" ng-model='insurance.input' base-sixty-four-input>
+                  Upload
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="client-fields add">
+            <div class="widget-txt">
+              <h4>National</h4>
+              <ul class="clients-btns list-none">
+                <li ng-class="{true:'active'}[serviceProviderDetails.national]"
+                    ng-click="serviceProviderDetails.national = true"><a>Yes</a></li>
+                <li ng-class="{false:'active'}[serviceProviderDetails.national]"
+                    ng-click="serviceProviderDetails.national = false"><a>No</a></li>
+              </ul>
+              <div class="national_form">
+                <div class="row">
+                  <span>Owner's Passport:</span>
+                  <div class="btn-file">
+                    <input value="upload" type="file" ng-model='identification.input' base-sixty-four-input>
+                    Upload
+                  </div>
+                </div>
+                <div class="row" ng-if="!serviceProviderDetails.national">
+                  <span>Visa</span>
+                  <div class="btn-file">
+                    <input value="upload" type="file" ng-model='visa.input' base-sixty-four-input>
+                    Upload
+                  </div>
+                </div>
+              </div>
+              <input type="submit" value="Register">
+            </div>
+          </div>
+        </div>
+        <div class="client-widget" ng-class="freelancer_reg_form">
+          <h2>Freelancer Registration</h2>
+          <div class="widget-txt">
+            <div class="client-fields add">
+              <h4>National</h4>
+              <ul class="clients-btns list-none">
+                <li ng-class="{true:'active'}[serviceProviderDetails.national]"
+                    ng-click="serviceProviderDetails.national = true"><a>Yes</a></li>
+                <li ng-class="{false:'active'}[serviceProviderDetails.national]"
+                    ng-click="serviceProviderDetails.national = false"><a>No</a></li>
+              </ul>
+              <div class="national_form">
+                <div class="row">
+                  <span>Owner's Passport:</span>
+                  <div class="btn-file">
+                    <input value="upload" type="file" ng-model='identification.input' base-sixty-four-input>
+                    Upload
+                  </div>
+                </div>
+                <div class="row" ng-if="!serviceProviderDetails.national">
+                  <span>Visa</span>
+                  <div class="btn-file">
+                    <input value="upload" type="file" ng-model='visa.input' base-sixty-four-input>
+                    Upload
+                  </div>
+                </div>
+              </div>
+              <input type="submit" value="Register">
+            </div>
+          </div>
+        </div>
+  </div>
+  </fieldset>
+  </form>
+</div>
+</div>

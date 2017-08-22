@@ -1,0 +1,103 @@
+<div class="tab" id="documents">
+    <div>
+        note: If you make any changes in this section, this account will go through verification process as a Service Provider.
+    </div>
+    <br>
+    <div class="info-row" ng-if="user.serviceProviderDetails.tradeLicense">
+        <div class="img-holder">
+            <img ng-src="{{user.serviceProviderDetails.tradeLicense}}" height="200" width="150" alt="tradeLicense">
+        </div>
+        <div class="text">
+            <div class="txt-col">
+                <h2>Trade License</h2>
+            </div>
+            <div class="txt-col">
+                <div class="btns">
+                    <a href="" class="btn-edit" ng-click="edit_document('tradeLicense')">Edit</a>
+                    <a href="{{user.serviceProviderDetails.tradeLicense}}" class="btn-download"
+                        download="{{user.serviceProviderDetails.tradeLicense}}">Download</a>
+                    <a href="" class="btn-screen" ng-click="fancyBoxmodel(user.serviceProviderDetails.tradeLicense)">Full
+                    screen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-row" ng-if="user.serviceProviderDetails.identification">
+        <div class="img-holder">
+            <img ng-src="{{user.serviceProviderDetails.identification}}" height="200" width="150" alt="identification">
+        </div>
+        <div class="text">
+            <div class="txt-col">
+                <h2>Owner's Passport</h2>
+            </div>
+            <div class="txt-col">
+                <div class="btns">
+                    <a href="" class="btn-edit" ng-click="edit_document('identification')">Edit</a>
+                    <a href="{{user.serviceProviderDetails.identification}}"
+                        download="{{user.serviceProviderDetails.identification}}" class="btn-download">Download</a>
+                    <a href="" class="btn-screen" ng-click="fancyBoxmodel(user.serviceProviderDetails.identification)">Full
+                    screen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-row" ng-if="user.serviceProviderDetails.insuranceCoverNote">
+        <div class="img-holder">
+            <img ng-src="{{user.serviceProviderDetails.insuranceCoverNote}}" height="200" width="150"
+                alt="identification">
+        </div>
+        <div class="text">
+            <div class="txt-col">
+                <h2>Insurance Cover Note</h2>
+            </div>
+            <div class="txt-col">
+                <div class="btns">
+                    <a href="" class="btn-edit" ng-click="edit_document('insuranceCoverNote')">Edit</a>
+                    <a href="{{user.serviceProviderDetails.insuranceCoverNote}}"
+                        download="{{user.serviceProviderDetails.insuranceCoverNote}}" class="btn-download">Download</a>
+                    <a href="" class="btn-screen"
+                        ng-click="fancyBoxmodel(user.serviceProviderDetails.insuranceCoverNote)">Full
+                    screen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-row" ng-if="user.serviceProviderDetails.addressProof">
+        <div class="img-holder">
+            <img ng-src="{{user.serviceProviderDetails.addressProof}}" height="200" width="150" alt="addressProof">
+        </div>
+        <div class="text">
+            <div class="txt-col">
+                <h2>Address Proof</h2>
+            </div>
+            <div class="txt-col">
+                <div class="btns">
+                    <a href="" class="btn-edit" ng-click="edit_document('addressProof')">Edit</a>
+                    <a href="{{user.serviceProviderDetails.addressProof}}"
+                        download="{{user.serviceProviderDetails.addressProof}}" class="btn-download">Download</a>
+                    <a href="" class="btn-screen" ng-click="fancyBoxmodel(user.serviceProviderDetails.addressProof)">Full
+                    screen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info-row" ng-if="user.serviceProviderDetails.visa">
+        <div class="img-holder">
+            <img ng-src="{{user.serviceProviderDetails.visa}}" height="200" width="150" alt="visa">
+        </div>
+        <div class="text">
+            <div class="txt-col">
+                <h2>Visa</h2>
+            </div>
+            <div class="txt-col">
+                <div class="btns">
+                    <a href="" class="btn-edit" ng-click="edit_document('visa')">Edit</a>
+                    <a href="{{user.serviceProviderDetails.visa}}" download="{{user.serviceProviderDetails.visa}}"
+                        class="btn-download">Download</a>
+                    <a href="" class="btn-screen" ng-click="fancyBoxmodel(user.serviceProviderDetails.visa)">Full
+                    screen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="dashboard-box-area">
+  <div class="box">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">Name</th>
+          <th class="text-center">Assign</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="em in employees">
+          <td class="text-center">{{em.email}}</td>
+          <td class="text-center">
+            <button class="btn btn-primary" ng-click="assign_employee(em)">
+              <i class="fa fa-briefcase"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

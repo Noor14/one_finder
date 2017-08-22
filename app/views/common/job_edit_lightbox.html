@@ -1,0 +1,24 @@
+<loading-show ng-model="loader"></loading-show>
+<div class="create_job_form">
+    <div class="box">
+        <form name="editJobForm" class="selection-form document_update_form job_notes_form" ng-submit="edit_job(job)" novalidate>
+            <fieldset>
+                <div class="client-widget">
+                    <div class="client-fields add">
+                        
+                        <!-- Job Title / Description / Photo Step -->
+                        <div ng-include src="'views/partials/job-edit/step1_description.html'" ng-show="job_edit_step1"></div>
+                        <!-- Category / Service Select-->
+                        <div ng-include src="'views/partials/job-edit/step2_category_service.html'" ng-show="job_edit_step2"></div>
+                        <!-- Location-->
+                        <div ng-include src="'views/partials/job-edit/step3_location.html'" ng-show="job_edit_step3"></div>
+                        <!-- Vehicle-->
+                        <div ng-include src="'views/partials/job-edit/step4_vehicle.html'" ng-show="job_edit_step4"></div>
+                        <!-- Dates-->
+                        <div ng-include src="'views/partials/job-edit/step5_dates.html'" ng-show="job_edit_step5"></div>                                                                        
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

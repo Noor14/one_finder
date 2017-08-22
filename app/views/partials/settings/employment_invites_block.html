@@ -1,0 +1,25 @@
+<div class="tab" id="employees_block">
+    <div class="info-row">
+		<table class="table table-bordered">
+	    	<thead>
+	        	<tr>
+	        		<th class="text-center">Company Name</th>        		   			        		
+	         		<th class="text-center">Actions</th>
+	        	</tr>
+	      	</thead>
+	      	<tbody>
+	        	<tr ng-repeat="em in employmentInvites">
+	        	  	<td class="text-center">{{em.companyName}}</td>  	
+	          		<td class="text-center">
+	            		<button class="btn btn-primary" ng-click="accept_employment(em)">
+	              			<i class="fa fa-check"></i>
+	            		</button>
+	            		<button class="btn btn-danger" ng-click="reject_employment(em)">
+	              			<i class="fa fa-times"></i>
+	            		</button>
+	          		</td>
+	        	</tr>
+	      	</tbody>
+	    </table>    	
+    </div>
+</div>

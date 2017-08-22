@@ -1,0 +1,69 @@
+<article id="content">
+  <header class="heading-area">
+    <h1>Bids</h1>
+  </header>
+  <div class="twocols">
+    <!-- Right Side Bar -->
+    <div class="col tabset">
+      <div class="side-widget">
+        <h2>Filter</h2>
+      </div>
+      <form class="form" name="bidsFilterForm" ng-submit="filter_bids(f)" style="padding: 15px;">
+        <div class="form-group">
+          <select class="form-control"
+                  ng-model="f.status"
+                  ng-options="status.id as status.val for status in statuses" required>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="button" value="Search" class="btn btn-primary btn-block">
+        </div>
+        <div class="form-group" ng-hide="statusFilter === undefined">
+          <input type="button" name="button" value=" Clear Filter" class="btn btn-danger btn-block" ng-click="clear_filter()">
+        </div>
+      </form>
+    </div>
+    <div class="col tab-content">
+      <table class="table table-bordered table-bids">
+        <thead>
+        <tr>
+          <th class="text-center">Name</th>
+          <th class="text-center">Bid Value (AED)</th>
+          <th class="text-center">Status</th>
+          <!--<th class="text-center">Offer</th>-->
+          <th class="text-center">Proposed Schedule</th>
+          <th class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="bid in bids">
+          <td class="text-center">{{bid.user.firstname + ' ' + bid.user.lastname}}</td>
+          <td class="text-center">{{bid.bidValue}}</td>
+          <td class="text-center">{{get_status(bid.status)}}</td>
+          <!--<td class="text-center">{{bid.offer}}</td>-->
+          <td class="text-center">{{bid.proposedSchedule | date:"MM/dd/yyyy, h:mm a"}}</td>
+          <td class="text-center">
+            <button class="btn btn-primary" ng-click="accept_bid(bid)" data-toggle="tooltip" title="Accept Bid!" ng-disabled="bid.status > 0 && bid.status < 3" style="margin-bottom: 5px;">
+              <i class="fa fa-check"></i>
+            </button>
+            <button class="btn btn-danger" ng-click ="remove_from_shortlist(bid)" data-toggle="tooltip" title="Remove this bid from the shortlist!" ng-if="bid.status === 3" ng-disabled="form_submit" style="margin-bottom: 5px;">
+              <i class="fa fa-times"></i>
+            </button>
+            <button class="btn btn-info" ng-click="shortlist_bid(bid)" data-toggle="tooltip" title="Shortlist Bid!" ng-disabled="form_submit" ng-if="bid.status !== 3" style="margin-bottom: 5px;">
+              <i class="fa fa-list"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <ul uib-pagination
+            ng-change="change_page()" total-items="totalRecords" ng-model="currentPage"
+            items-per-page="itemsPerPage" class="pagination-md" boundary-links="true"
+            num-pages="numPages">
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</article>

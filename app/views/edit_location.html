@@ -1,0 +1,71 @@
+<loading-show ng-model="loader"></loading-show>
+<article id="content" class="vehicle_detail locations_col">
+  <header class="heading-area text-capitalize">
+
+    <a href="" class="btn edit_btn btn-danger" ng-click="remove_location(edit_location.id)">
+      <i class="fa fa-trash" aria-hidden="true"></i> Delete
+    </a>
+
+    <a href="" class="btn edit_btn btn-primary" ng-click="cancel_edit_location()">
+      <i class="fa fa-ban" aria-hidden="true"></i> Cancel Edit
+    </a>
+
+    <h1>Location detail</h1>
+
+  </header>
+  <div class="edit_vehicle_block">
+    <div class="visual-area">
+      <div class="visual" style="width: 100% !important;">
+        <form class="selection-form document_update_form" ng-submit="submit_edit_location()">
+          <fieldset>
+            <div class="client-widget">
+              <h2>Edit {{edit_location.name}} Location</h2>
+              <div class="map-block">
+                <div class="map-area">
+                  <div id="map_canvas">
+                    <ui-gmap-google-map
+                      center="map.center"
+                      zoom="map.zoom"
+                      dragging="map.dragging"
+                      bounds="map.bounds"
+                      events="map.events"
+                      options="map.options"
+                      pan="true"
+                      control="map.control"
+                    >
+                      <ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id"
+                                      events="marker.events"></ui-gmap-marker>
+
+                    </ui-gmap-google-map>
+                    <a class="btn btn-primary btn-block" ng-click="getmyLocation()" style="margin: 0 auto">Get your
+                      Current
+                      location
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="client-fields add">
+                <div class="widget-txt">
+                  <input placeholder="Location Name" type="text" ng-model="edit_location.name" required>
+                  <input placeholder="Apartment Name/House no." type="text" ng-model="edit_location.apartment" required>
+                  <input placeholder="Street Address" type="text" ng-model="edit_location.streetAddress" required>
+                  <input placeholder="Latitude" type="text" ng-model="edit_location.latitude" required>
+                  <input placeholder="Longitude" type="text" ng-model="edit_location.longitude" required>
+                  <select id="Country_name" ng-model="edit_location.countryId"
+                          ng-options="opt.id as opt.name for opt in countries"
+                          name="countries" ng-change="get_cities_name(edit_location.countryId)"></select>
+                  <select id="edit_location_cityId" ng-model="edit_location.cityId"
+                          ng-options="opt.id as opt.name for opt in cities"
+                          name="cities" ng-change="chng_location(edit_location.cityId)"></select>
+
+                  <button class="btn btn-primary btn-block" type="submit" ng-disabled="location_form.$invalid">Done
+                    Editing
+                  </button>
+                </div>
+              </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</article>

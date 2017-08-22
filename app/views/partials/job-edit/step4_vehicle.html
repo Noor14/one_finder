@@ -1,0 +1,44 @@
+<div class="job_create_step5">
+    <h2>Select Vehicle</h2>
+    <div ng-hide="change_vehicle">
+        <span class="loc-name">
+            {{job.vehicle.name}}
+        </span>
+        <span class="loc-detail">
+            {{job.vehicle.make}}, {{job.vehicle.model}}
+        </span>
+        <button type="button" class="btn btn-danger" ng-click="change_job_vehicle()">
+            <i class="fa fa-times"></i>
+        </button>
+        
+    </div>
+    <div ng-show="change_vehicle">
+        <div class="widget-txt location_widget_block">
+            <ul class="list-unstyled">
+                <li ng-repeat="vehicle in vehicles">
+                    <label ng-class="{selectedlabel: new_vehicle.id === vehicle.id}">
+                        <input  
+                                type="radio" 
+                                name="vehicle_name" 
+                                ng-value="vehicle" 
+                                ng-model="new_vehicle" 
+                                ng-change="set_vehicle(vehicle)">
+                        <div class="vehicle_img">
+                            <img ng-src="{{vehicle.picture}}" class="img-responsive">
+                        </div>
+                        <span class="loc-name">
+                            {{vehicle.name}}
+                        </span>
+                        <span class="loc-detail">
+                            {{vehicle.make}}, {{vehicle.model}}
+                        </span>
+                    </label>
+                </li>
+            </ul>
+        </div>    
+    </div>
+    <a class="btn btn-primary btn-block text-bold text-uppercase"
+        ng-click="go_job_edit_step5()" ng-disabled="!step4_valid()">
+        Proceed
+    </a>    
+</div>

@@ -1,0 +1,31 @@
+{
+  "name": "onefindr",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "1.5.3",
+    "angular-animate": "1.4.0",
+    "angular-cookies": "1.4.0",
+    "angular-resource": "1.4.0",
+    "angular-sanitize": "1.4.0",
+    "angular-touch": "1.4.0",
+    "jquery": "^3.1.1",
+    "font-awesome": "^4.7.0",
+    "angular-toastr": "^2.1.1",
+    "ng-dialog": "^0.6.4",
+    "angular-base64-upload": "^0.1.19",
+    "moment": "^2.17.1",
+    "bootstrap": "^3.3.7",
+    "bootstrap-ui-datetime-picker": "^2.4.3",
+    "ngmap": "^1.17.8",
+    "angular-ui-router": "^0.3.2",
+    "ng-flow": "~2",
+    "angular-google-maps": "^2.4.1",
+    "angular-actioncable": "^1.1.1",
+    "angular-websocket": "^2.0.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.4.0"
+  },
+  "appPath": "app",
+  "moduleName": "onefindrApp"
+}

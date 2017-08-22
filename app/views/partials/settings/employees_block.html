@@ -1,0 +1,92 @@
+<div class="tab" id="employees_block">
+    <div class="info-row">
+		<table class="table table-bordered">
+	    	<thead>
+	        	<tr>
+	        		<th class="text-center">Email</th>
+	        		<th class="text-center">Status</th>
+	        		<th class="text-center">Joining Date</th>
+	        		<th class="text-center">Specialization</th>
+	         		<th class="text-center">Actions</th>
+	        	</tr>
+	      	</thead>
+	      	<tbody>
+	        	<tr ng-repeat="em in employees">
+	        	  	<td class="text-center">{{em.email}}</td>
+	        	  	<td class="text-center">{{get_employment_status(em.status)}}</td>
+	        	  	<td class="text-center">{{em.joiningDate  | date:"dd/MM/yyyy"}}</td>
+	        	  	<td class="text-center">{{em.specialization.name}}</td>
+	          		<td class="text-center">
+	            		<button class="btn btn-primary" data-toggle="tooltip" title="Edit Details"
+	            				ng-click="edit_employee(em)" ng-show="em.status === 0">
+	              			<i class="fa fa-pencil"></i>
+	            		</button>
+	            		<button class="btn btn-danger" data-toggle="tooltip" title="Removee Employee!"
+	            				ng-click="remove_employee(em)">
+	              			<i class="fa fa-times"></i>
+	            		</button>
+	          		</td>
+	        	</tr>
+	      	</tbody>
+	    </table>
+    </div>
+  <div class="info-row" style="padding-top:0; ">
+		<form class="selection-form" name="addEmployeeForm" ng-submit="add_employee(new_emp)">
+            <fieldset class="row">
+                <div>
+                    <h2 style="margin:0px -5px 10px">Add an employee</h2>
+                    <div class="client-fields">
+		            	<label for="email">Email *</label>
+	            		<input type="email" name="email1" class="form-control"
+	            			ng-model="new_emp.email" placeholder="Email">
+                    </div>
+		          	<div class="client-fields">
+		            	<label>Joining date</label>
+			            	<div>
+			            		<input type="text" readonly uib-datepicker-popup="dd-MM-yyyy"
+			            	    	ng-model="new_emp.joiningDate" is-open="open_new_emp_date.opened" ng-required="true"
+			           		       	placeholder="Please select date" ng-click="open_calendar()"/>
+			           		</div>
+		          	</div>
+					<div class="client-fields">
+					  	<div class="cp-con">
+					     	<span>Choose category</span>
+					      	<select
+					          	ng-model="category"
+					          	ng-options="cat as cat.name for cat in cats"
+					          	name="category"
+					          	ng-change="get_skillz(cat)" style="margin-bottom: 25px;">
+					      	</select>                          
+					  	</div>
+					    <div class="cp-con" ng-show="category.hasChildren">
+					        <span>Choose Sub Category</span>
+					        <select ng-model="category_child" class="form-control m-b parent_cat"
+					            ng-options="cat_child as cat_child.name for cat_child in category.children"
+					            ng-change="get_skillz(category_child)"/>
+					    </div>
+					    <div class="cp-con" ng-show="category_child.hasChildren">
+					        <span>Choose Another Sub Category</span>
+					        <select ng-model="category_grand_child" class="form-control m-b parent_cat"
+					            ng-options="cat as cat.name for cat in category_child.children"
+					            ng-change="get_skillz(category_grand_child)"/>
+					    </div>
+					    <div class="cp-con" ng-show="skills.length === 0">
+					        <span> No services for this category </span>
+					    </div>
+					    <div class="cp-con" ng-show="skills.length > 0">
+					        <span>Choose Services</span>
+					        <select
+					            ng-model="new_emp.specialization"
+					            class="form-control m-b parent_cat"
+					            ng-options="skill.id as skill.name for skill in skills"/>
+					    </div>
+					</div>
+
+                    <div class="form-group client-fields">
+                    	<input class="btn btn-primary btn-block" type="submit" value="Add Employee">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

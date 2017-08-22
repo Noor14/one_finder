@@ -1,0 +1,71 @@
+<div class="job_create_step3">
+    <h2>Job Description</h2>
+    <div class="widget-txt">
+        <input type="text"
+               placeholder="Job Title*" ng-model="new_job.title"
+               name="jobTitle" ng-change="enable_processbtn3(new_job.title)" required>
+
+        <div ng-messages="addJobForm.jobTitle.$error"
+             ng-show="addJobForm.jobTitle.$touched && addJobForm.jobTitle.$invalid">
+            <p ng-messages="required" class="text-danger">Job Title is required</p>
+        </div>
+        <div  class="input-group" style="margin: 0 0 25px">
+          <span class="input-group-addon">AED</span>
+          <input type="number" placeholder="Maximum Budget" ng-model="new_job.budget" class="form-control" style="margin-bottom: 0;" min="1">
+        </div>
+        <textarea rows="5" cols="10" ng-model="new_job.description" placeholder="Tell us more...">
+        </textarea>
+
+        <div class="row">
+            <div class="form-group clearfix">
+                <div class="col-md-9">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <input type="text" id="uploadFile" placeholder="Choose File" disabled="disabled" ng-model="new_job.photo.filename"/>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="fileUpload btn btn-primary btn-block">
+                        <span>
+                          <i class="fa fa-upload" aria-hidden="true"></i>
+                          Upload
+                        </span>
+                        <input id="uploadBtn" type="file" class="upload" ng-model="new_job.photo"
+                               base-sixty-four-input/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary btn-block file_add" ng-click="add_photo(new_job.photo)" type="button">
+                        <i class="fa fa-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+            <div class="form-group clearfix">
+              <ul class="list-unstyled job_photos_list">
+                  <li ng-repeat="file in new_job.photos"  class="gallery-box">
+                    <img class="img center-block img-responsive" ng-src="data:image/{{file.filetype}};base64,{{file.base64}}" >
+                    <button class="btn btn-danger btn-block btn-group" ng-click="remove_photo($index)" type="button">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <a href="" class="btn btn-primary btn-block text-bold text-capitalize"
+               ng-click="go_back_step2()">
+                Go Back
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="" class="btn btn-primary btn-block text-bold text-capitalize"
+               ng-click="skip_job_process_step3()" ng-disabled="process_btn3">
+                Proceed
+            </a>
+          </div>
+        </div>
+    </div>
+</div>

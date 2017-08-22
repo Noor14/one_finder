@@ -1,0 +1,237 @@
+<loading-show ng-model="loader"></loading-show>
+<article id="content">
+  <header class="heading-area">
+    <h1>Hello Mr. {{user.firstname}} {{user.lastname}}</h1>
+  </header>
+  <div class="twocols">
+    <div class="col" style="background: transparent !important;">
+      <div class="side-widget noti_side" ng-if="user_role === 'service_provider'">
+        <div class="title">
+          Company Overview
+        </div>
+        <ul class="noti_list list-none">
+          <li>
+            <span class="noti_title">You Have</span>
+            <span class="desp">{{totalEmp}} Employees</span>
+          </li>
+          <li>
+            <span class="noti_title">You offer</span>
+            <span class="desp">{{dashboard.skills || '0'}} Services</span>
+          </li>
+          <li>
+            <span class="noti_title">You have got</span>
+            <span class="desp">{{dashboard.reviews || '0'}} Reviews</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="side-widget noti_side" ng-if="user_role === 'general_user'" style="margin-bottom: 30px;">
+        <div class="title">
+          My Locations
+        </div>
+        <div class="locations_block">
+          <div class="loc-col" style="width: 100% !important;margin: 0;">
+            <ul class="list-unstyled loc-list">
+              <!-- ngRepeat: location in locations --><li ng-repeat="location in user_locations" ng-if="$index < 3">
+              <a ui-sref="app.location_detail({id: location.id})" style="border-bottom: 0;">
+                <span class="loc-name ng-binding">{{location.name}}</span>
+                <span class="loc-detail ng-binding">{{location.apartment}}, {{location.streetAddress}}</span>
+                <span class="ng-binding">{{location.city.name}}</span>
+              </a>
+            </li><!-- end ngRepeat: location in locations -->
+            </ul>
+            <button href="" class="btn btn-block view_btn" ng-click="view_profile(12)" ng-if="user_locations.length > 3">View All</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="side-widget noti_side" ng-if="user_role === 'general_user'" style="margin-bottom: 30px;">
+        <div class="title">
+          My Vehicles
+        </div>
+        <ul class="list-none vehicles_dashboard_list text-center">
+          <li ng-repeat="vehicle in vehicles" ng-if="$index < 3">
+            <a href ui-sref="app.vehicle_detail({id: vehicle.id})">{{vehicle.model}} {{vehicle.make}}</a>
+          </li>
+        </ul>
+        <button href="" class="btn btn-block view_btn" ng-click="view_profile(11)" ng-if="vehicles.length > 3">View All</button>
+      </div>
+
+
+    </div>
+    <div class="col">
+      <ul class="service-status block list-none dashboard_stats" ng-if="user_role === 'service_provider'">
+        <li>
+          <span>AED {{dashboard.totalEarning || '0'}}</span>
+          <p>Lifetime Earning</p>
+        </li>
+        <li>
+          <span>AED {{dashboard.earningThisMonth || '0'}}</span>
+          <p>This Month</p>
+        </li>
+        <li>
+          <span>AED {{dashboard.avgProjectPrice || '0'}}</span>
+          <p>Average Project</p>
+        </li>
+        <li>
+          <span>{{dashboard.projectsCompleted || '0'}}</span>
+          <p>Projects Completed</p>
+        </li>
+      </ul>
+      <ul class="service-status block list-none dashboard_stats" ng-if="user_role === 'general_user'">
+        <li>
+          <span>{{user.totalEarning || '0'}}</span>
+          <p>Current Projects</p>
+        </li>
+        <li>
+          <span>{{user.jobsAwarded || '0'}}</span>
+          <p>Total Jobs</p>
+        </li>
+        <li>
+          <span>{{user.avgProjectPrice || '0'}}</span>
+          <p>Spent this Month</p>
+        </li>
+        <li>
+          <span>{{dashboard.projectsCompleted || '0'}}</span>
+          <p>Lifetime Spend</p>
+        </li>
+      </ul>
+      <div class="two_col dashboard_content">
+
+        <!-- Service Provider Jobs -->
+        <div class="inner_col dashboard_col" ng-if="user_role === 'service_provider'">
+          <div class="dashboard_filter">
+            <ul class="list-none">
+              <li><a href="" ng-click="filter_jobs(1)" ng-class="{ active: inprocss }">In Process</a></li>
+              <li><a href="" ng-click="filter_jobs(8)" ng-class="{ active: indispute }">Disputed</a></li>
+            </ul>
+          </div>
+          <ul class="widgets list-none">
+            <li ng-repeat="job in my_jobs" style="width: 100%;padding: 0;" ng-if="$index < 5">
+              <div class="item-holder">
+                <a ui-sref="app.job_detail({id: job.id})">
+                  <strong class="title text-capitalize">
+                    {{job.title || "Job Title Not provided"}}
+                  </strong>
+                  <div class="img-holder" ng-style="{'background-image':'url(images/placeholder.jpg)','background-repeat': 'no-repeat','background-size':'cover','background-position': 'center center'}">
+                    <div ng-style="{'background-image': 'url({{ job.photos[0].url }})','height':'100%','background-size':'cover','background-repeat': 'no-repeat','background-size': 'cover','background-position': 'center center', 'height':'250px'}">
+                    </div>
+                  </div>
+                </a>
+                <div class="service-info">
+                  <div class="img-holder">
+                    <img ng-src="{{job.postedBy.picture || 'images/user_placeholder.jpeg'}}" alt="img">
+                  </div>
+                  <div class="txt">
+                    <strong class="text-capitalize">{{job.postedBy.firstname}}</strong>
+                    <p>{{job.location.city.name}} , {{job.location.country.name}}</p>
+                  </div>
+                </div>
+                <ul class="service-status list-none" ng-class="{'half-status' : !job.bidCount}">
+                  <li>
+                    <span>{{job.schedule | date:'MMM d'}}</span>
+                    <p>Schedule</p>
+                  </li>
+                  <li>
+                    <span>{{get_status(job.status)}}</span>
+                    <p>Status</p>
+                  </li>
+                  <li ng-if="job.status === 1 && job.end_time">
+                    <span class="text-capitalize">{{job.end_time}}</span>
+                    <p>Time Left</p>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <div ng-if="user_role === 'general_user'">
+            <button href="" class="btn btn-block view_btn" ng-if="my_jobs.length > 5" ui-sref="app.jobs-gu">View All</button>
+          </div>
+          <div ng-if="user_role === 'service_provider'">
+            <button href="" class="btn btn-block view_btn" ng-if="my_jobs.length > 5" ui-sref="app.jobs-sp">View All</button>
+          </div>
+        </div>
+
+        <!-- General User Jobs -->
+        <div class="inner_col dashboard_col" ng-if="user_role === 'general_user'">
+          <div class="dashboard_filter">
+            <ul class="list-none">
+              <li><a href="" ng-click="filter_jobs(1)" ng-class="{ active: inprocss }">In Bidding</a></li>
+              <li><a href="" ng-click="filter_jobs(2)" ng-class="{ active: bidding_complete }">Bidding Completed</a></li>
+            </ul>
+          </div>
+          <ul class="widgets list-none">
+            <li ng-repeat="job in my_jobs" ng-if="$index < 5" style="width: 100%;padding: 0;">
+              <div class="item-holder">
+                <a ui-sref="app.job_detail-gu({id: job.id})">
+                  <strong class="title text-capitalize">
+                    {{job.title || "Job Title Not provided"}}
+                  </strong>
+                  <div class="img-holder" ng-style="{'background-image':'url(images/placeholder.jpg)','background-repeat': 'no-repeat','background-size':'cover','background-position': 'center center'}">
+                    <div ng-style="{'background-image': 'url({{ job.photos[0].url }})','height':'100%','background-size':'cover','background-repeat': 'no-repeat','background-size': 'cover','background-position': 'center center', 'height':'250px'}">
+                    </div>
+                  </div>
+                </a>
+                <div class="service-info">
+                  <div class="img-holder">
+                    <img ng-src="{{job.postedBy.picture || 'images/user_placeholder.jpeg'}}" alt="img">
+                  </div>
+                  <div class="txt">
+                    <strong class="text-capitalize">{{job.postedBy.firstname}}</strong>
+                    <p>{{job.location.city.name}} , {{job.location.country.name}}</p>
+                  </div>
+                </div>
+                <ul class="service-status list-none" ng-class="{'half-status' : !job.bidCount}">
+                  <li>
+                    <span>{{job.schedule | date:'MMM d'}}</span>
+                    <p>Schedule{{job.end_time}}</p>
+                  </li>
+                  <li>
+                    <span>{{get_status(job.status)}}</span>
+                    <p>Status</p>
+                  </li>
+                  <!--<li ng-if="job.status === 1">-->
+                    <!--<span class="text-capitalize">{{job.end_time}}</span>-->
+                    <!--<p>Time Left</p>-->
+                  <!--</li>-->
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <button href="" class="btn btn-block view_btn" ng-if="my_jobs.length > 5" ui-sref="app.jobs-gu">View All</button>
+        </div>
+
+        <div class="inner_col dashboard_col">
+          <div class="main_title">
+            Recent Activities
+          </div>
+          <ul class="list-none reviews side-chat updates_list">
+            <li ng-repeat="noti in notifications" ng-if="$index < 10">
+              <div ng-click="message_detail(convo)">
+                <div class="conv_date">
+                  <span class="ng-binding">{{noti.timestamp  | date:"h:mm a"}}</span>
+                </div>
+                <div class="conv_date_img">
+                  <div class="img-holder">
+                    <img ng-src="{{noti.user.picture || 'images/placeholder.jpg'}}" alt="Description" class="img-responsive" style="height:39px;width:39px;">
+                  </div>
+                </div>
+                <div class="text">
+                  <h3 class="text-capitalize ng-binding">{{noti.user.firstname}} {{noti.user.lastname}}</h3>
+                  <strong class="text-capitalize ng-binding">{{noti.message}}</strong>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <button href="" class="btn btn-block view_btn" ng-click="view_profile(50)" ng-if="notifications.length > 10">View All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!--<div class="col">-->
+      <!--<a href="" ng-click="signupForm()">Signup as vendor</a>-->
+    <!--</div>-->
+  </div>
+</article>
+

@@ -1,0 +1,34 @@
+<div class="job_create_step2">
+    <h2>Services</h2>
+    <div class="widget-txt location_widget_block">
+        <ul class="list-unstyled">
+            <li ng-repeat="service in services" ng-if="services.length > 0">
+                <label class="text-capitalize"
+                    ng-class="{selectedlabel: $parent.new_job.serviceId == service.id}">
+                <input type="radio" name="service_name" ng-value="service.id"
+                    ng-model="$parent.new_job.serviceId" ng-click="enable_processbtn2()">
+                <span>{{service.name}}</span>
+                </label>
+            </li>
+            <li ng-if="!services.length">
+                <a href="" ng-click="go_back_to_all_categories()">
+                   No services for this category! Go back.
+                </a>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="" class="btn btn-primary btn-block text-bold text-capitalize"
+                    ng-click="back_to_step1()">
+                    Go Back
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="" class="btn btn-primary btn-block text-bold text-capitalize"
+                    ng-click="skip_job_process_step2()" ng-disabled="process_btn2">
+                    Proceed
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

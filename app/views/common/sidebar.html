@@ -1,0 +1,73 @@
+<aside id="sidebar" ng-controller="NavigationCtrl">
+  <ul class="list-none">
+
+    <li ng-controller="createjobCtrl" ng-if="user_role === 'general_user'">
+      <a ng-click="open_create_job_dialog()" href="">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        <span>Post a Job</span>
+      </a>
+    </li>
+
+    <!-- duplication intentional, to handle case of when employee sp signs in as a general user -->
+    <li ng-class="{ active: isCurrentPath('/app/dashboard') }" ng-if="user_role === 'general_user'">
+      <a ui-sref="app.dashboard">
+        <i class="fa fa-tachometer" aria-hidden="true"></i>
+        <span>Dashboard </span>
+      </a>
+    </li>
+    <div ng-if="user_role === 'service_provider'">
+      <li ng-class="{ active: isCurrentPath('/app/dashboard') }" ng-if=" user.serviceProviderDetails.type != 3">
+        <a ui-sref="app.dashboard">
+          <i class="fa fa-tachometer" aria-hidden="true"></i>
+          <span>Dashboard </span>
+        </a>
+      </li>
+    </div>
+    <li ng-if="user_role === 'service_provider' && user.serviceProviderDetails.type < 3" ng-class="{ active: isCurrentPath('/app/explore-jobs') }">
+      <a ui-sref="app.explore-jobs">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <span>Explore</span>
+      </a>
+    </li>
+
+    <li ng-if="user_role === 'service_provider'" ng-class="{ active: isCurrentPath('/app/my_jobs') }"> <!-- Service Provider -->
+      <a ui-sref="app.jobs-sp">
+        <i class="fa fa-briefcase" aria-hidden="true"></i>
+        <span>Jobs</span>
+      </a>
+    </li>
+    <li ng-if="user_role === 'general_user'" ng-class="{ active: isCurrentPath('/app/my-jobs') }"> <!-- General User -->
+      <a ui-sref="app.jobs-gu">
+        <i class="fa fa-briefcase" aria-hidden="true"></i>
+        <span>Jobs</span>
+      </a>
+    </li>
+
+    <!-- duplication intentional, to handle case of when employee sp signs in as a general user -->
+    <li ng-class="{ active: isCurrentPath('/app/messages') }" ng-if="user_role === 'general_user'">
+      <a ui-sref="app.messages">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        <span>Messaging</span>
+      </a>
+    </li>
+    <li ng-class="{ active: isCurrentPath('/app/messages') }" ng-if="user_role === 'service_provider' && user.serviceProviderDetails.type != 3">
+      <a ui-sref="app.messages">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        <span>Messaging</span>
+      </a>
+    </li>
+    <li ng-class="{ active: isCurrentPath('/app/reports') }" 
+        ng-if="user_role === 'service_provider' && user.serviceProviderDetails.type != 3">
+      <a ui-sref="app.reports">
+        <i class="fa fa-file-text-o" aria-hidden="true"></i>
+          <span>Reports</span>
+      </a>
+    </li>
+    <li ng-class="{ active: isCurrentPath('/app/setting') }">
+      <a ui-sref="app.setting.public_profile">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        <span>Settings</span>
+      </a>
+    </li>
+  </ul>
+</aside>

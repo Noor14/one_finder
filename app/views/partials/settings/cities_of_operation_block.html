@@ -1,0 +1,31 @@
+<div class="tab" id="cities_of_operation">
+    <div class="info-row">
+        <form class="selection-form cp-form" ng-submit="add_new_cities()">
+            <fieldset>
+                <div>
+                    <h2>Cities of Operation</h2>
+                    <div class="client-fields">
+                        <div class="cp-con">
+                            <span>Select Country</span>
+                            <select id="country-id" 
+                                ng-model="add_cities.countryId"
+                                ng-options="opt.id as opt.name for opt in countries"
+                                name="countries"
+                                disabled>    
+                            </select>
+                        </div>
+                        <div class="cp-con">
+                            <span>Select Cities</span>
+                            <select multiple id="city-id" 
+                                ng-model="add_cities.cities"
+                                ng-options="opt.id as opt.name for opt in cities"
+                                name="cities">
+                            </select>
+                        </div>
+                    </div>
+                    <input type="submit" value="Add Cities">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

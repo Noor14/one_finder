@@ -1,0 +1,76 @@
+<loading-show ng-model="loader"></loading-show>
+<article id="content">
+    <header class="heading-area">
+        <h1>Settings</h1>
+        <span ng-if="user_role === 'service_provider' && user.userType === 3">
+            Verification as a Service Provider Pending
+        </span>        
+    </header>
+    <div class="twocols">
+        <!-- Left Side Bar -->
+
+        <div class="col tabset">
+            <div class="side-widget">
+                <h2>Account</h2>
+                <ul class="list-none">
+                    <li ng-class="{ active: isSet(60) }" ng-if="user.userType === 1">
+                        <a ui-sref="app.setting.become_service_provider">Be a Service Provider!</a>
+                    </li>
+                    <li ng-class="{ active: isSet(1) }">
+                        <a ui-sref="app.setting.public_profile">View Public Profile</a>
+                    </li>
+                    <li ng-class="{ active: isSet(4) }">
+                        <a ui-sref="app.setting.basic_details">Basic Details</a>
+                    </li>
+                    <li ng-class="{ active: isSet(5) }">
+                        <a ui-sref="app.setting.change_password">Change Password</a>
+                    </li>
+                    <li ng-class="{ active: isSet(12) }" ng-if="user_role != 'service_provider'">
+                        <a ui-sref="app.setting.locations">Locations</a>
+                    </li>
+                    <li ng-class="{ active: isSet(11) }" ng-if="user_role != 'service_provider'">
+                        <a ui-sref="app.setting.vehicles">Vehicles</a>
+                    </li>
+                    <li ng-class="{ active: isSet(40) }" ng-if="user.employmentInvitations">
+                        <a ui-sref="app.setting.employment_invite">Employment Invites</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="side-widget" ng-if="user_role === 'service_provider' && user.serviceProviderDetails && user.serviceProviderDetails.type != 3"> <!-- service provider and not an employee -->
+                <h2>Company</h2>
+                <ul class="list-none">
+                    <li ng-class="{ active: isSet(10)}">
+                        <a ui-sref="app.setting.services_offered">Services Offered</a>
+                    </li>
+                    <li ng-class="{ active: isSet(8) }">
+                        <a ui-sref="app.setting.cities_of_operation">Cities of Operation</a>
+                    </li>
+                    <li ng-class="{ active: isSet(70) }">
+                        <a ui-sref="app.setting.documents">Documents</a>
+                    </li>
+                    <li ng-class="{ active: isSet(30) }" ng-if="user.serviceProviderDetails.type === 1">
+                        <a ui-sref="app.setting.employees">Employees</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="side-widget">
+                <h2>Notifications</h2>
+                <ul class="list-none">
+                     <li ng-class="{ active: isSet(50) }">
+                        <a ui-sref="app.setting.notifications">View</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- End of Left Side bar -->
+
+        <!-- Right Content Area -->
+
+        <div class="col tab-content">
+            <div ui-view="setting-detail"></div>
+        </div>
+
+        <!-- End of Right Content Area -->
+    </div>
+</article>

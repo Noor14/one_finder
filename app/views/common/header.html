@@ -1,0 +1,43 @@
+<header id="header">
+    <div class="logo">
+        <a href="">
+            <img src="images/logo.png" alt="ONEfinder.com" class="img-responsive">
+        </a>
+    </div>
+  <div class="form-holder">
+    <a ui-sref="app.setting.notifications" class="btn-globe">Globe</a>
+  </div>
+    <div class="user-area">
+        <div class="txt" ng-class="{ 'ul_open': signout_btn}">
+            <div class="user_d">
+              <div class="profile-img">
+                <img ng-src="{{ user.picture || 'images/user_placeholder.jpeg' }}">
+              </div>
+              <div class="user-name-block">
+                <span class="name text-capitalize">
+                    {{user.firstname + " " + user.lastname}}
+                </span>
+                <a class="drop-opener" ng-click="togglebtn()">
+                  Drop opener
+                </a>
+              </div>
+            </div>
+            <div class="userinfobtn" ng-if="signout_btn">
+                <ul class="header_user_control">
+                  <li>
+                    <a href="" ng-click="view_profile()">View Profile</a>
+                  </li>
+                  <li>
+                    <a href="" ng-click="change_pass()">Change Password</a>
+                  </li>
+                  <li ng-if="user.serviceProviderDetails === undefined">
+                    <a href="" ui-sref="app.dashboard">Sign Up as a service Provider</a>
+                  </li>
+                  <li>
+                      <a href="" ng-click="submit_logout()">Logout</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

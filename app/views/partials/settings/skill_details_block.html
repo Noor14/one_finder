@@ -1,0 +1,57 @@
+<div class="tab" id="skills_details">
+    <div class="info-row">
+        <form class="selection-form cp-form" ng-submit="add_new_skills(selected_skills)">
+            <fieldset>
+                <h2>Add Services</h2>
+                <div class="client-fields">
+                    <div class="cp-con">
+                        <span>Choose Category</span>
+                        <select ng-model="category" class="form-control m-b parent_cat"
+                            ng-options="cat as cat.name for cat in cats"
+                            ng-change="get_skills(category)"/>
+                    </div>
+                    <div class="cp-con" ng-show="category.hasChildren">
+                        <span>Choose Sub Category</span>
+                        <select ng-model="category_child" class="form-control m-b parent_cat"
+                            ng-options="cat_child as cat_child.name for cat_child in category.children"
+                            ng-change="get_skills(category_child)"/>
+                    </div>
+                    <div class="cp-con" ng-show="category_child.hasChildren">
+                        <span>Choose Another Sub Category</span>
+                        <select ng-model="category_grand_child" class="form-control m-b parent_cat"
+                            ng-options="cat as cat.name for cat in category_child.children"
+                            ng-change="get_skills(category_grand_child)"/>
+                    </div>
+                    <div class="cp-con" ng-show="skills.length === 0">
+                        <span> No services for this category </span>
+                    </div>
+                    <div class="cp-con" ng-show="skills.length > 0">
+                        <span>Choose Services</span>
+                        <select multiple
+                            ng-model="selected_skills"
+                            class="form-control m-b parent_cat"
+                            ng-options="skill.id as skill.name for skill in skills"/>
+                    </div>
+                </div>
+                <input type="submit" value="Add Services">
+            </fieldset>
+        </form>
+    </div>
+    
+    <div class="info-row" ng-if="userSkills.length >= 1">
+        <div class="col-md-12">
+            <div class="side-widget">
+                <h2>Selected Services</h2>
+                <p ng-if="user.skills == 0" class="text-center">You don't have Selected any skills</p>
+                <ul class="list-none skills_list" ng-repeat="skill in userSkills">
+                    <li>
+                        <button class="btn btn-danger pull-right" ng-click="remove_skill(skill.id)">
+                            Delete
+                        </button>
+                        <span>{{skill.name}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

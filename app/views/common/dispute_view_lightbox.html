@@ -1,0 +1,59 @@
+<div class="dispute-list">
+	<div class="dispute_details_header clearfix">
+    <div class="clearfix">
+      <h2 class="text-center text-capitalize"> {{title}} </h2>
+      <h4 class="pull-right"> Status: {{get_status(status)}}</h4>
+    </div>
+		<div class="row clearfix" ng-if="is_my_job">
+			<div class="col-md-6">
+				<button class="btn btn-block btn-primary" ng-click="resolve()">
+					Resolve Dispute
+				</button>
+			</div>
+			<div class="col-md-6">
+				<button class="btn btn-block btn-primary" ng-click="escalate()">
+					Escalate to OneFindr
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="dispute_details_body clearfix">
+		<ul class="chat list-none">
+		    <li ng-repeat = "m in messages" ng-class="m.postedByMe ? '' : 'sender'">
+		        <div class="text">
+		            <p>
+		                {{m.description}}
+		            </p>
+		            <p class="pull-right  msg-date">
+		                {{m.createdAt | date:"dd/MM/yyyy, h:mm a"}}
+		            </p>
+                <p class="pull-right">
+                  <div ng-repeat="p in m.photos">
+                    <a  class="btn btn-primary" ng-href="{{p.url}}" target="_blank">
+                      <img ng-src="{{p.url}}" class="img-responsive"/>
+                    </a>
+                  </div>
+                </p>
+            </div>
+		    </li>
+		</ul>
+	</div>
+	<div class="dispute_details_form clearfix">
+		<h4>Send a message</h4>
+		<form name="sendDisputeMessageForm"  class="form" ng-submit="send_message(msg)">
+			<div class="form-group">
+				<textarea class="form-control" type="text" rows="5"
+					name="description" ng-model="msg.description" placeholder="Description">
+				</textarea>
+			</div>
+			<div class="form-group">
+	            <div class="form-group">
+	            	<input type="file" class="text-center" ng-model="msg.photo" base-sixty-four-input/>
+	            </div>
+			</div>
+			<div class="form-group">
+				<input class="btn btn-primary btn-block" type="submit" name="submit" value="Send">
+			</div>
+		</form>
+	</div>
+</div>

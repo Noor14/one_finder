@@ -1,0 +1,195 @@
+<loading-show ng-model="loader"></loading-show>
+<article id="content">
+  <header class="heading-area">
+    <h1 class="text-capitalize">{{my_job_detail.title}}</h1>
+  </header>
+<div class="twocols side">
+  <div class="col f_fol">
+  </div>
+    <div class="col job_detail_page">
+      <div class="side-widget">
+        <div class="slider-area">
+          <div class="slider">
+            <div id='carousel-custom' class='carousel slide attraction_slider' data-ride='carousel'
+                 interval="5000">
+
+
+
+              <!-- Indicators -->
+              <ul class="slider-thumbs list-none" style="max-height:487px;overflow-y: auto;">
+                <li ng-repeat="slide in slides" data-target='#carousel-custom'
+                    data-slide-to='{{$index}}' ng-class='{active:$first}' ng-style="{'background-image': 'url({{ slide.image }})','height':'100%','background-size':'cover','background-repeat': 'no-repeat','background-size': 'cover','background-position': 'center center', 'height':'100px'}">
+                </li>
+              </ul>
+
+              <div class="large-slide">
+                <div class='carousel-outer'>
+                  <!-- Wrapper for slides -->
+                  <div class='carousel-inner'>
+                    <div class='item' ng-class='{active:$first}' ng-repeat="slide in slides">
+                      <div ng-class='{active:$first}' ng-style="{'background-image': 'url({{ slide.image }})','height':'100%','background-size':'cover','background-repeat': 'no-repeat','background-size': 'cover','background-position': 'center center', 'height':'487px'}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <ul class="service-status block list-none">
+            <li ng-if="my_job_detail.type >1">
+              <a ng-click="start_convo()" href="">
+                <span><i class="fa fa-comment"></i></span>
+                <p>Have a conversation</p>
+              </a>
+            </li>
+            <li ng-if="my_job_detail.status === 7 && my_job_detail.type === 3"  href="">
+              <a ng-click="start_dispute()" href="">
+            <span>
+              <i class="fa fa-exclamation-triangle"></i>
+            </span>
+                <p>Dispute!</p>
+              </a>
+            </li>
+            <li ng-if="my_job_detail.status === 8 && my_job_detail.type === 3"  href="">
+              <a ng-click="view_dispute()" href="">
+            <span>
+              <i class="fa fa-exclamation-triangle"></i>
+            </span>
+                <p>View Dispute Details!</p>
+              </a>
+            </li>
+            <li>
+              <span>{{get_status(my_job_detail.status)}}</span>
+              <p>Status</p>
+            </li>
+            <li ng-if="my_job_detail.status <= 2">
+              <span>{{my_job_detail.schedule | date:'MMM d'}}</span>
+              <p>Schedule</p>
+            </li>
+            <li ng-if="my_job_detail.status <= 2">
+              <span>{{my_job_detail.bidCount}}</span>
+              <p>Bid Count</p>
+            </li>
+            <li ng-if="my_job_detail.status <= 2">
+              <span>{{my_job_detail.flexibility + ' day(s)'}}</span>
+              <p>Flexibility</p>
+            </li>
+            <li ng-if="my_job_detail.status === 1">
+              <span>{{end_date}}</span>
+              <p>Time Left</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="status-btns" ng-class="{'full_width_status': my_job_detail.type === 1}">
+          <div class="service-info btn-group" ng-if="my_job_detail.type === 1">
+            <button ng-click="edit_job()" class="btn btn-info">
+              Edit Job
+            </button>
+            <button ng-click="delete_job()"  class="btn btn-danger">
+              Delete Job
+            </button>
+          </div>
+            <a class="btn-mark" ui-sref="app.job_bids({id:my_job_detail.id})" ng-if="my_job_detail.type === 1 && my_job_detail.bidCount >= 1">
+              View Bids
+            </a>
+<!--             <a class="btn-mark" ng-click="sign_off_job()" ng-if="my_job_detail.status === 7">
+              Sign Off
+            </a> -->
+            <a class="btn-mark" ng-click="rate_sp()" href="" ng-if="my_job_detail.type === 3">
+              Rate the job
+            </a>
+      </div>
+      <div class="job-desc">
+          <strong>Description</strong>
+          <p>{{my_job_detail.description}}</p>
+      </div>
+      <div class="two-widts">
+        <div class="widt" ng-if="my_job_detail.type === 1">
+          <strong>Project Timeline</strong>
+          <ul class="list-none">
+            <li>
+              <em>{{my_job_detail.createdAt | date:"MM/dd/yyyy, h:mm a"}}</em>
+              <span>Posted On</span>
+            </li>
+            <li>
+              <em>{{my_job_detail.biddingEnds | date:"MM/dd/yyyy, h:mm a"}}</em>
+              <span>Bidding Ends</span>
+            </li>
+            <li>
+              <em>{{my_job_detail.schedule | date:"MM/dd/yyyy, h:mm a"}}</em>
+              <span>Scheduled For</span>
+            </li>
+          </ul>
+        </div>
+        <div class="widt" ng-if="my_job_detail.type === 2">
+            <ul class="list-none">
+              <li>
+                <em>
+                  {{my_job_detail.jobAwardDetails.awardedTo.firstname + ' ' + my_job_detail.jobAwardDetails.awardedTo.lastname}}
+                </em>
+                <span>Awarded to</span>
+              </li>
+              <li>
+                <em>{{my_job_detail.jobAwardDetails.spVerificationCode}}</em>
+                <span>SP Verification Code</span>
+              </li>
+              <li>
+                <em>{{my_job_detail.jobAwardDetails.agreedSchedule | date:"dd/MM/yyyy, h:mm a"}}</em>
+                <span>Scheduled For</span>
+              </li>
+              <li>
+                <em>{{my_job_detail.jobAwardDetails.agreedPrice | currency: "AED " : 2}}</em>
+                <span>Agreed Price</span>
+              </li>
+              <li>
+                <em>{{my_job_detail.jobAwardDetails.jobStartCode}}</em>
+                <span>Job Start Code</span>
+              </li>
+            </ul>
+        </div>
+        <div class="widt" ng-if="my_job_detail.type === 3">
+          <ul class="list-none">
+            <li  ng-if="my_job_detail.status === 9">
+              <em>{{my_job_detail.signoffDetails.signedOffOn |  date:"dd/MM/yyyy, h:mm a"}}</em>
+              <span>Signed Off </span>
+            </li>
+            <li>
+              <em>{{my_job_detail.jobCompletionDetails.completedOn | date:"dd/MM/yyyy, h:mm a"}}</em>
+              <span>Completed On</span>
+            </li>
+            <li>
+              <em>
+                <button class="btn btn-info" ng-click="open_completion_details('notes')">
+                  <i class="fa fa-file"></i>
+                </button>
+                <button class="btn btn-info" ng-click="open_completion_details('photos')">
+                  <i class="fa fa-image"></i>
+                </button>
+              </em>
+              <span>Notes &amp; Photos </span>
+            </li>
+          </ul>
+        </div>
+        <div class="widt">
+          <header class="header">
+            <span>
+              {{my_job_detail.location.city.name || 'Job city name'}} , {{my_job_detail.location.country.name || 'Job city name'}}
+            </span>
+            <strong>Location</strong>
+          </header>
+          <div class="map-holder">
+            <ng-map marker="true"
+                    center="[{{my_job_detail.location.latitude}}, {{my_job_detail.location.longitude}}]">
+              <marker position="{{my_job_detail.location.latitude}}, {{my_job_detail.location.longitude}}"
+                      animation="false">
+              </marker>
+            </ng-map>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

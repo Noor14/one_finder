@@ -1,0 +1,36 @@
+<div class="job_create_step1" ng-show="job_create_step1">
+    <h2>Select a category</h2>
+    <h3 class="text-center">
+        What do you need help with?
+    </h3>
+    <div class="widget-txt">
+        <ul class="list-unstyled list-inline cat-list">
+            <li ng-repeat="cat in cats" class="text-center">
+                <label  class="btn btn-default btn-circle btn-lg"
+                        ng-class="{selectedlabel: $parent.job_category == cat.id}">
+                        <input type="radio" name="category_name"
+                            ng-value="cat.id" ng-model="$parent.job_category"
+                            ng-change="get_cat_service(cat.id)" ng-click="enable_processbtn1(cat)">
+
+                        <img ng-src="{{cat.thumb}}" class="img-responsive">
+
+                        <span>{{cat.name}}</span>
+                </label>
+            </li>
+        </ul>
+      <div class="row">
+      <div class="col-md-6" ng-if="step1_prev_btn">
+        <a href="" class="btn btn-primary btn-block text-bold text-capitalize"
+           ng-click="previousStep()">
+          Go Back
+        </a>
+      </div>
+      <div class="col-md-6" ng-if="process_btn1">
+        <a  class="btn btn-primary btn-block text-bold text-capitalize"
+            ng-click="skip_job_process_step1()" ng-disabled="step1_proceed_btn">
+            Proceed
+        </a>
+        </div>
+      </div>
+    </div>
+</div>

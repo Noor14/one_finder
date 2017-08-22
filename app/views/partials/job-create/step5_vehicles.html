@@ -1,0 +1,36 @@
+<div class="job_create_step5">
+    <h2><a href="" class="add_vehicle_btn" ng-click="add_job_vech(11)"></a>Select Vehicle</h2>
+    <div class="widget-txt location_widget_block">
+        <ul class="list-unstyled">
+            <li ng-repeat="vehicle in vehicles">
+                <label ng-class="{selectedlabel: new_job.vehicleId == vehicle.id}">
+                    <input  type="radio" name="vehicle_name" ng-value="vehicle.id"
+                        ng-model="new_job.vehicleId" ng-click="enable_processbtn5()">
+                    <div class="vehicle_img">
+                        <img ng-src="{{vehicle.picture}}" class="img-responsive">
+                    </div>
+                    <span class="loc-name">
+                    {{vehicle.name}}
+                    </span>
+                    <span class="loc-detail">
+                    {{vehicle.make}}, {{vehicle.model}}
+                    </span>
+                </label>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="" class="btn btn-primary btn-block text-bold text-capitalize"
+                    ng-click="go_back_step_v()">
+                    Go Back
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-block text-bold text-capitalize"
+                    ng-click="skip_job_process_step5()" ng-disabled="process_btn5">
+                Proceed
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

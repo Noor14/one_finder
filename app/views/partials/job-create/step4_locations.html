@@ -1,0 +1,33 @@
+<div class="job_create_step4">
+    <h2><a href="" class="add_location_btn" ng-click="add_job_location(12)"></a>Select your location</h2>
+    <div class="widget-txt location_widget_block">
+        <ul class="list-unstyled">
+            <li ng-repeat="location in locations">
+                <label ng-class="{selectedlabel: new_job.locationId == location.id}">
+                <input  type="radio" name="location_name" ng-value="location.id"
+                    ng-model="new_job.locationId" ng-click="enable_processbtn4()">
+                <span class="loc-name">
+                {{location.name}}
+                </span>
+                <span class="loc-detail">
+                {{location.apartment}}, {{location.streetAddress}}, {{location.city.name}}
+                </span>
+                </label>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="" class="btn btn-primary btn-block text-bold text-capitalize"
+                    ng-click="go_back_step_l()">
+                    Go Back
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-block text-bold text-capitalize"
+                    ng-click="skip_job_process_step4()" ng-disabled="process_btn4">
+                    Proceed
+                </a>
+            </div>
+        </div>        
+    </div>
+</div>

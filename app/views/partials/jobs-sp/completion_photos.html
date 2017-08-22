@@ -1,0 +1,26 @@
+<div class="dashboard-box-area">
+    <div class="box">
+        <form class="selection-form document_update_form job_notes_form" ng-submit="close_completion_note_box()">
+            <fieldset>
+                <div class="client-widget">
+                    <div class="client-fields add">
+                        <div class="widget-txt">
+                            <label>Completion Photos</label>
+                            <div ng-if="show_completion_notes_photos.length === 0">
+                                <h4 class="text-center">No Photos!</h4>
+                            </div>
+                            <div ng-if="show_completion_notes_photos.length > 0">
+                                <div uib-carousel active="active" no-wrap="false">
+                                    <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id" style="height: 300px">
+                                        <img ng-src="{{slide.image}}" class="img img-thumbnail">
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <input type="submit"" value="Close">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<loading-show ng-model="loader"></loading-show>
+<article id="content" class="vehicle_detail locations_col">
+  <header class="heading-area text-capitalize">
+
+    <a href="" class="btn edit_btn btn-danger" ng-click="remove_location(view_location.id)">
+      <i class="fa fa-trash" aria-hidden="true"></i> Delete
+    </a>
+
+    <a ui-sref="app.edit_location({id: view_location.id})" class="btn edit_btn btn-primary">
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+    </a>
+
+    <h1>Location detail</h1>
+
+  </header>
+  <div class="visual-area">
+    <div class="visual">
+      <div class="map-holder text-capitalize">
+        <ng-map zoom="15" center="[{{view_location.latitude}}, {{view_location.longitude}}]">
+          <marker position="{{view_location.latitude}}, {{view_location.longitude}}"
+                  animation="Animation.BOUNCE"></marker>
+        </ng-map>
+      </div>
+      <span class="name">{{view_location.name}}</span>
+      <p>{{view_location.apartment}} , {{view_location.streetAddress}}</p>
+    </div>
+    <ul class="tech-info list-none text-capitalize">
+      <li>{{view_location.city.name || 'Not Provided'}}<span>City</span></li>
+      <li>{{view_location.country.name || 'Not Provided'}} <span>Country</span></li>
+    </ul>
+  </div>
+</article>

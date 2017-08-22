@@ -1,0 +1,63 @@
+<div class="tab locations_block" id="locations_block">
+    <div class="info-row">
+        <div class="info-content">
+            <div class="loc-col">
+                <div class="loc-col-title text-center">
+                    Locations
+                </div>
+                <ul class="list-unstyled loc-list">
+                    <li ng-repeat="location in locations">
+                        <a ui-sref="app.location_detail({id: location.id})">
+                        <span class="loc-name">{{location.name}}</span>
+                        <span class="loc-detail">{{location.apartment}}, {{location.streetAddress}}</span>
+                        <span>{{location.city.name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="loc-col">
+                <div class="loc-col-title text-center">
+                    Add your Location
+                </div>
+                <div class="map-area">
+                    <div id="map_canvas">
+                        <ui-gmap-google-map
+                            center="map.center"
+                            zoom="map.zoom"
+                            dragging="map.dragging"
+                            bounds="map.bounds"
+                            events="map.events"
+                            options="map.options"
+                            pan="true"
+                            control="map.control">
+                            <ui-gmap-marker 
+                                coords="marker.coords" 
+                                options="marker.options" 
+                                idkey="marker.id"
+                                events="marker.events">
+                            </ui-gmap-marker>
+                        </ui-gmap-google-map>
+                        <Button class="btn btn-primary btn-block" ng-click="getmyLocation()" style="margin: 0 auto">
+                            Get your Current location
+                        </Button>
+                    </div>
+                </div>
+                <form class="edit_form" name="location_form" ng-submit="add_new_location()">
+                    <input placeholder="Location Name" type="text" ng-model="new_loc.name" required>
+                    <input placeholder="Apartment Name/House no." type="text" ng-model="new_loc.apartment" required>
+                    <input placeholder="Street Address" type="text" ng-model="new_loc.streetAddress" required>
+                    <input placeholder="Latitude" type="text" ng-model="new_loc.latitude" required>
+                    <input placeholder="Longitude" type="text" ng-model="new_loc.longitude" required>
+                    <select id="Country_name" ng-model="new_loc.countryId"
+                        ng-options="opt.id as opt.name for opt in countries"
+                        name="countries" ng-change="get_cities_name(new_loc.countryId)"></select>
+                    <select id="new_loc_cityId" ng-model="new_loc.cityId"
+                        ng-options="opt.id as opt.name for opt in cities"
+                        name="cities" ng-change="chng_location(new_loc.cityId)"></select>
+                    <button class="btn btn-primary btn-block" type="submit" ng-disabled="location_form.$invalid">Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

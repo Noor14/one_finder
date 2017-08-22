@@ -1,0 +1,79 @@
+<div class="create_job_form">
+	<div class="box">
+    <div class="info-row">
+		<form class="" name="editEmployeeForm" ng-submit="edit_the_employee(employee_edit)">
+            <fieldset class="row">
+                <div>
+                    <h4>Edit an employee's details</h4>       
+                    <div class="client-fields">
+		            	<label for="email">Email *</label>
+	            		<input type="email" name="email" class="form-control" 
+	            			ng-model="employee_edit.email" placeholder="Email">
+                    </div>
+		          	<div class="form-group client-fields">
+		            	<label>Joining date</label>
+		            	<span>	
+	              			<button type="button" class="btn btn-default" ng-click="open_calendar2()">
+	                			<i class="fa fa fa-calendar"></i>
+	              			</button>
+			            </span>
+			            	<div>	            	
+			            		<input type="text" readonly uib-datepicker-popup="dd-MM-yyyy"
+			            	    	ng-model="employee_edit.joiningDate" is-open="open_employee_edit_date.opened" ng-required="true"
+			           		       	placeholder="Please select date "/>
+			           		</div>		           	
+		          	</div> 
+					<div class="client-fields" ng-if="!employee_edit.specialization">
+					  	<div class="cp-con">
+					     	<span>Choose category</span>
+					      	<select
+					          	ng-model="category"
+					          	ng-options="cat as cat.name for cat in cats"
+					          	name="category"
+					          	ng-change="get_skillz(cat)" style="margin-bottom: 25px;">
+					      	</select>                          
+					  	</div>
+					    <div class="cp-con" ng-show="category.hasChildren">
+					        <span>Choose Sub Category</span>
+					        <select ng-model="category_child" class="form-control m-b parent_cat"
+					            ng-options="cat_child as cat_child.name for cat_child in category.children"
+					            ng-change="get_skillz(category_child)"/>
+					    </div>
+					    <div class="cp-con" ng-show="category_child.hasChildren">
+					        <span>Choose Another Sub Category</span>
+					        <select ng-model="category_grand_child" class="form-control m-b parent_cat"
+					            ng-options="cat as cat.name for cat in category_child.children"
+					            ng-change="get_skillz(category_grand_child)"/>
+					    </div>
+					    <div class="cp-con" ng-show="skills.length === 0">
+					        <span> No services for this category </span>
+					    </div>
+					    <div class="cp-con" ng-show="skills.length > 0">
+					        <span>Choose Services</span>
+					        <select
+					            ng-model="employee_edit.specialization_new"
+					            class="form-control m-b parent_cat"
+					            ng-options="skill.id as skill.name for skill in skills"/>
+					    </div>
+					</div>                	
+                	<div class="client-fields" ng-if="employee_edit.specialization">
+                		<span>Specialization</span>
+                		<br>
+                		<div class="cp-con">
+                			<span>{{employee_edit.specialization.name}}</span>
+                			<span>
+                				<button class="btn btn-danger" ng-click="remove_specialization(employee_edit)">
+                					<i class="fa fa-times"></i>
+                				</button>
+                			</span>
+                		</div>
+                	</div>
+                    <div class="form-group">
+                    	<input class="btn btn-primary btn-block" type="submit" value="Save">
+                    </div>
+                </div>
+            </fieldset>
+        </form>  	
+    </div>		
+	</div>
+</div>

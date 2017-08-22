@@ -1,0 +1,61 @@
+<div class="dashboard-box-area">
+    <form class="form" name="ratingForm" ng-submit="submit_rating(rating)">
+        <div class="box">
+            <table class="table table-bordered table-ratings">
+                <tbody>
+                    <tr>
+                        <th class="text-center">Punctuality</th>
+                        <td class="text-center">
+                            <input type="number" name="punctuality" 
+                            class="form-control" ng-model="rating.punctuality" min="0" max="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Quality</th>
+                        <td class="text-center">
+                            <input type="number" name="quality" 
+                            class="form-control" ng-model="rating.quality" min="0" max="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Service</th>
+                        <td class="text-center">
+                            <input type="number" name="service" 
+                            class="form-control" ng-model="rating.service" min="0" max="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Politeness</th>
+                        <td class="text-center">
+                            <input type="number" name="politeness" 
+                            class="form-control" ng-model="rating.politeness" min="0" max="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Overall *</th>
+                        <td class="text-center">
+                            <input type="number" name="overall" 
+                            class="form-control" ng-model="rating.overall" min="0" max="5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Review *</th>
+                        <td class="text-center">
+                            <textarea class="form-control" rows="3" ng-model="rating.review">
+                                
+                            </textarea>
+                        </td>
+                    </tr>                                
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary btn-block" type="submit">
+                    Submit Rating
+                </button>        
+            </div>
+        </div>
+    </form>  
+</div>
+

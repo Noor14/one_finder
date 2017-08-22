@@ -1,0 +1,27 @@
+<div class="dashboard-box-area">
+    <div class="box">
+        <form class="selection-form document_update_form" ng-submit="submit_new_vehicle(new_vehicle)">
+            <fieldset>
+                <div class="client-widget">
+                    <h2>Add New Vehicle</h2>
+                    <div class="client-fields add">
+                        <div class="widget-txt">
+                            <input placeholder="Vehicle Name*" type="text" ng-model="new_vehicle.name" required class="text-center">
+                            <input placeholder="Model No" type="text" ng-model="new_vehicle.model" class="text-center">
+                            <input placeholder="Made By*" type="text"
+                             ng-model="new_vehicle.make" required class="text-center">
+                          <img class="img center-block img-responsive" ng-src="data:image/{{new_vehicle.pictureId.filetype}};base64,{{new_vehicle.pictureId.base64}}" style="width: 50% !important;margin-bottom:20px;">
+                            <div class="btn-file" style="width: 100%">
+                                <input value="upload Picture" type="file"
+                                    ng-model='new_vehicle.pictureId' base-sixty-four-input
+                                    class="text-center" style="width: 100%">
+                              Upload Picture
+                            </div>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
