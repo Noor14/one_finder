@@ -97,7 +97,7 @@ app.controller("JobDetailGUCtrl", ["$scope", "jobsService",'toastr', "$state", "
 				$scope.loader = false;
 				toastr.error(error.errors[0]);
 	    	})
-	    }
+	    };
 
 	    $scope.delete_job = function(){
 	      	ngDialog.open({
@@ -105,7 +105,7 @@ app.controller("JobDetailGUCtrl", ["$scope", "jobsService",'toastr', "$state", "
 	        	className: 'ngdialog-theme-default dashboard-signup-form',
 	        	controller:'JobDetailGUCtrl'
 	      	});
-	    }
+	    };
 
 	    $scope.open_completion_details = function(type){
 	     	var templatePath = '/views/partials/jobs-sp/completion_'+ type + '.html';
@@ -119,7 +119,7 @@ app.controller("JobDetailGUCtrl", ["$scope", "jobsService",'toastr', "$state", "
 	          		}
 	        	}
 	      	});
-	    }
+	    };
 
 	    $scope.dialog_yes = function(){
 	    	jobsService.delete_job($state.params.id)

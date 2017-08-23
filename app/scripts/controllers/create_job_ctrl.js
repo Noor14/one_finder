@@ -161,6 +161,7 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
     };
 
     $scope.skip_job_process_step2 = function () {
+
       if ($scope.process_btn2 == false) {
 
         var services_tmp = $scope.services.filter(function(serv){
@@ -219,10 +220,11 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
     };
 
     $scope.skip_job_process_step4 = function () {
-      if($scope.job_vehicle_req){
+      if($scope.job_vehicle_req && !$scope.process_btn4){
         $scope.job_create_step4 = false;
         $scope.job_create_step5 = true;
-      }else{
+      }
+      else if(!$scope.job_vehicle_req){
         $scope.job_create_step4 = false;
         $scope.job_create_step6 = true;
       }
@@ -231,8 +233,10 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
 
 
     $scope.skip_job_process_step5 = function () {
+      if(!$scope.process_btn5){
       $scope.job_create_step5 = false;
       $scope.job_create_step6 = true;
+      }
     };
 
     $scope.job_schedule_datepicker = {
@@ -371,10 +375,13 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
     };
 
     $scope.enable_processbtn1 = function (cat) {
-      $scope.step1_proceed_btn = !$scope.step1_proceed_btn;
       if (cat.hasChildren) {
+        $scope.step1_proceed_btn = true;
         $scope.cats = cat.children;
         $scope.step1_prev_btn = $scope.process_btn1 = true;
+      }
+      else{
+        $scope.step1_proceed_btn = false;
       }
     };
 
@@ -407,6 +414,7 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
 
     $scope.enable_processbtn4 = function () {
       $scope.process_btn4 = false;
+
     };
 
     $scope.enable_processbtn5 = function(){

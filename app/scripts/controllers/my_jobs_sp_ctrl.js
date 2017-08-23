@@ -46,8 +46,38 @@ app.controller("MyJobsSPCtrl", ["$scope", "jobsService", "toastr", "$state",
 			$scope.loader = false;
 			$scope.my_jobs = res.data.jobs;
 			$scope.my_jobs.forEach(function(job){
-	  			job.end_time =  moment(job.biddingEnds).toNow(true);
-			})
+        job.end_time =  moment(job.biddingEnds).toNow(true);
+        if(job.status == 1){
+          job.status = "In Bidding ";
+        }
+        else if(job.status == 2){
+          job.status = "Bidding Closed";
+        }
+        else if(job.status == 3){
+          job.status = "Not Started Yet";
+        }
+        else if(job.status == 4){
+          job.status = "Started ";
+        }
+        else if(job.status == 5){
+          job.status = "Not Assigned";
+        }
+        else if(job.status == 6){
+          job.status = "Assigned";
+        }
+        else if(job.status == 7){
+          job.status = "Recently Completed";
+        }
+        else if(job.status == 8){
+          job.status = "In Dispute";
+        }
+        else if(job.status == 9){
+          job.status = "Signed Off";
+        }
+        else if(job.status == 10){
+          job.status = "Refunded";
+        }
+			});
 			$scope.moreAvailable = res.data.moreAvailable;
 			$scope.totalRecords = res.data.totalRecords;
 			$scope.timestamp = res.data.timestamp;
