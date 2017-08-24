@@ -106,7 +106,7 @@
           <p>{{my_job_detail.description}}</p>
       </div>
       <div class="two-widts">
-        <div class="widt" ng-if="my_job_detail.type === 1">
+        <div class="widt" ng-if="my_job_detail.type === 1" ng-class="fullWidth">
           <strong>Project Timeline</strong>
           <ul class="list-none">
             <li>
@@ -123,7 +123,7 @@
             </li>
           </ul>
         </div>
-        <div class="widt" ng-if="my_job_detail.type === 2">
+        <div class="widt" ng-if="my_job_detail.type === 2" ng-class="fullWidth">
             <ul class="list-none">
               <li>
                 <em>
@@ -149,7 +149,7 @@
               </li>
             </ul>
         </div>
-        <div class="widt" ng-if="my_job_detail.type === 3">
+        <div class="widt" ng-if="my_job_detail.type === 3" ng-class="fullWidth">
           <ul class="list-none">
             <li  ng-if="my_job_detail.status === 9">
               <em>{{my_job_detail.signoffDetails.signedOffOn |  date:"dd/MM/yyyy, h:mm a"}}</em>
@@ -172,7 +172,7 @@
             </li>
           </ul>
         </div>
-        <div class="widt">
+        <div class="widt" ng-if="my_job_detail.location">
           <header class="header">
             <span>
               {{my_job_detail.location.city.name || 'Job city name'}} , {{my_job_detail.location.country.name || 'Job city name'}}

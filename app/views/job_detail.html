@@ -219,7 +219,7 @@
             </ul>
           </div>
         </div>
-          <div class="widt">
+          <div class="widt" ng-if="my_job_detail.location">
             <header class="header">
               <span>
                 {{my_job_detail.location.city.name || 'Job city name'}} , {{my_job_detail.location.country.name || 'Job city name'}}

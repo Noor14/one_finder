@@ -267,7 +267,7 @@ function config($stateProvider, $urlRouterProvider) {
         }
       },
       authorize: true
-    })             
+    })
 }
 app.config(['$stateProvider','$urlRouterProvider',config]);
 app.constant("Domain","http://api_staging.onefindr.com/api/v0_1");      //STAGING
@@ -291,7 +291,7 @@ app.run(['$rootScope','$state','AuthService','$cookies','ActionCableConfig','Dom
       ActionCableConfig.wsUri= Domain_cable
         + '?sessionToken=' + $cookies.get('sessionToken')
         + '&client=' + $cookies.get('client')
-        + '&email=' + $cookies.get('email')
+        + '&email=' + $cookies.get('email');
       ActionCableConfig.autoStart= false;
     }else{
       userFromCookie = undefined;

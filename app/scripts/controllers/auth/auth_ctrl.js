@@ -24,7 +24,7 @@ app.controller("AuthCtrl", ["AuthService", "$scope", "$cookies", "$state", "toas
                 action: function () {  //type 1 ==> state change //value ==> ToState
                   return {
                     type: 1,
-                    value: 'app.setting.public_profile'
+                    value: 'app.dashboard'
                   };
                 }
               }
@@ -63,7 +63,6 @@ app.controller("AuthCtrl", ["AuthService", "$scope", "$cookies", "$state", "toas
 
                 if (data.user.userType == 1) { //GENERAL USER
                     set_user_role('general_user');
-                    $state.go('app.setting.public_profile');
                 }
 
                 if (data.user.userType == 2 || data.user.userType == 3) //SERVICE PROVIDER (verified and verfication pending)
@@ -92,7 +91,7 @@ app.controller("AuthCtrl", ["AuthService", "$scope", "$cookies", "$state", "toas
                     set_user_cookie(data);
                     $scope.form_submit = false;
                     set_user_role('general_user');
-                    $state.go('app.setting.public_profile');
+                    $state.go('app.dashboard');
                     toastr.success('You signed up Successfully', 'Success!');
                 })
                 .catch(function (error) {

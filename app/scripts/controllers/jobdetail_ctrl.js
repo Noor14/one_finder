@@ -61,7 +61,7 @@ app.controller("JobdetailCtrl", ["$scope", "jobsService", 'toastr', "$state", "n
                 })
 
                 if($scope.slides.length === 0)
-                    $scope.slides.push({id:0,image:'images/img15.jpg'})
+                    $scope.slides.push({id:0,image:'images/placeholder.jpg'})
 
                 $scope.end_date = $scope.my_job_detail.end_time;
                 $scope.edit_bid = $scope.my_job_detail.myBid;

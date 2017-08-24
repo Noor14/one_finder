@@ -420,7 +420,6 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
     $scope.enable_processbtn5 = function(){
       $scope.process_btn5 = false;
     };
-
     function init() {
       $scope.step1_prev_btn = false;
       $scope.process_btn1  = false;

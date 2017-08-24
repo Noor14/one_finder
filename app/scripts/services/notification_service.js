@@ -1,6 +1,6 @@
-app.factory("NotificationService", ["$http", "Domain", "AuthService",	
+app.factory("NotificationService", ["$http","$q", "Domain", "AuthService",
 
-	function ($http, Domain, AuthService) {
+	function ($http, $q, Domain, AuthService) {
 
 	    var error_catch  = function(res){
 	      if(res.data)

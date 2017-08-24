@@ -3110,3 +3110,6 @@ ul.tree li {
   margin: 0 5px;
   float: none;
 }
+.full-width{
+  width:100% !important;
+}

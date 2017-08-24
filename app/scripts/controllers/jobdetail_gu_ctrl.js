@@ -71,6 +71,9 @@ app.controller("JobDetailGUCtrl", ["$scope", "jobsService",'toastr', "$state", "
 			jobsService.get_job_detail($state.params.id)
 			.success(function (data) {
 				$scope.my_job_detail = data;
+        if(!$scope.my_job_detail.location){
+          $scope.fullWidth = "full-width";
+        }
 				$scope.my_job_detail.end_time = moment($scope.my_job_detail.biddingEnds).toNow(true);
 				$scope.end_date = $scope.my_job_detail.end_time;
 		        $scope.my_job_detail.photos.forEach(function(pic,index){
