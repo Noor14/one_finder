@@ -134,18 +134,18 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
     };
 
     $scope.go_back_step_l = function(){
-      $scope.process_btn4 = false;
+      $scope.process_btn4 = true;
       $scope.job_create_step4 = false;
       $scope.job_create_step3 = true;
     };
 
     $scope.go_back_step_v = function(){
-      $scope.process_btn5 = false;
+      $scope.process_btn5 = $scope.process_btn4 = true;
       $scope.job_create_step5 = false;
       if($scope.job_location_req){
-        $scope.job_create_step4 = true;
+        $scope.process_btn4 = $scope.job_create_step4 = true;
       }else{
-        $scope.job_create_step3 = true;
+        $scope.process_btn5 = $scope.job_create_step3 = true;
       }
     };
 
@@ -224,7 +224,7 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
         $scope.job_create_step4 = false;
         $scope.job_create_step5 = true;
       }
-      else if(!$scope.job_vehicle_req){
+      else if(!$scope.job_vehicle_req && !$scope.process_btn4){
         $scope.job_create_step4 = false;
         $scope.job_create_step6 = true;
       }
@@ -233,7 +233,7 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
 
 
     $scope.skip_job_process_step5 = function () {
-      if(!$scope.process_btn5){
+      if(!$scope.process_btn5 && !$scope.process_btn5){
       $scope.job_create_step5 = false;
       $scope.job_create_step6 = true;
       }

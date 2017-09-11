@@ -5,14 +5,14 @@
 			<input class="form-control" type="text" name="title" ng-model="dispute.title" placeholder="Title">
 		</div>
 		<div class="form-group">
-			<textarea class="form-control" type="text" rows="5" 
+			<textarea class="form-control" type="text" rows="5"
 				name="description" ng-model="dispute.description" placeholder="Description">
 			</textarea>
 		</div>
 		<div class="form-group">
             <div class="col-md-6">
-                <input type="file" class="form-control" ng-model="dispute.photo"
-                        base-sixty-four-input>                  
+                <input type="file" class="form-control no-padding" ng-model="dispute.photo"
+                        base-sixty-four-input>
             </div>
             <div class="col-md-6">
                 <button class="btn btn-primary" ng-click="add_photo(dispute.photo)" type="button">
@@ -30,11 +30,11 @@
                     </button>
                 </div>
                 <br>
-       	    </div>                
+       	    </div>
         </div>
         <br>
 		<div class="form-group">
 			<input class="btn btn-primary btn-block" type="submit" name="submit" value="Create">
-		</div>		
+		</div>
 	</form>
 </div>

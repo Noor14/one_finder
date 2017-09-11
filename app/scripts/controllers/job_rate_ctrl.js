@@ -1,10 +1,10 @@
-app.controller('JobRateCtrl',['$scope','RatingService','ratings','toastr', 
+app.controller('JobRateCtrl',['$scope','RatingService','ratings','toastr',
 	function($scope,RatingService,ratings,toastr){
 
 		$scope.rating = {};
 		if(ratings.rating){
 			$scope.rating = {
-				id:          ratings.rating.id, 
+				id:          ratings.rating.id,
 				overall: 	 parseInt(ratings.rating.overall),
 				punctuality: parseInt(ratings.rating.punctuality),
 				politeness:  parseInt(ratings.rating.politeness),
@@ -36,14 +36,27 @@ app.controller('JobRateCtrl',['$scope','RatingService','ratings','toastr',
 				return;
 			}
 
+      if(!rating.punctuality){
+        rating.punctuality = 0;
+      }
+
+      if(!rating.quality){
+        rating.quality = 0;
+      }
+      if(!rating.service){
+        rating.service = 0;
+      }
+      if(!rating.politeness){
+        rating.politeness = 0;
+      }
 			rating.jobId = ratings.job_id;
-			
+
 			if(rating.id){
-				return RatingService.edit_rating(ratings.user_id,rating)
+				return RatingService.edit_rating(ratings.user_id, rating)
 					.then(res_success)
 					.catch(res_error)
 			}else{
-				return RatingService.create_rating(ratings.user_id,rating)
+				return RatingService.create_rating(ratings.user_id, rating)
 					.then(res_success)
 					.catch(res_error)
 			}

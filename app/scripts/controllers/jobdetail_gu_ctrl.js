@@ -35,7 +35,7 @@ app.controller("JobDetailGUCtrl", ["$scope", "jobsService",'toastr', "$state", "
 	        		}
 	        	}
 	      	});
-		}
+		};
 
 		$scope.view_dispute = function(){
 			ngDialog.open({

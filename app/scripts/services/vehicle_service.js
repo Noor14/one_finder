@@ -15,7 +15,7 @@ app.factory('vehicleService', ['$http', '$cookies', 'Domain', '$q',
           return $q.reject(res.data.errors.toString());
       else
           return $q.reject('Error');
-    };
+    }
 
     function return_data(res){
       return res.data;
@@ -25,7 +25,7 @@ app.factory('vehicleService', ['$http', '$cookies', 'Domain', '$q',
     return {
       get_all_vehicles: function () {
         var url = Domain + "/vehicles";
-        var headers = {headers: get_headers()}; 
+        var headers = {headers: get_headers()};
         return $http.get(url,headers)
           .then(return_data)
           .catch(error_catch);

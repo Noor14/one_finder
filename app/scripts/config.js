@@ -270,10 +270,10 @@ function config($stateProvider, $urlRouterProvider) {
     })
 }
 app.config(['$stateProvider','$urlRouterProvider',config]);
-app.constant("Domain","http://api_staging.onefindr.com/api/v0_1");      //STAGING
-app.constant("Domain_cable","ws://api_staging.onefindr.com/cable");     //STAGING_Cable
-// app.constant("Domain","http://api.onefindr.com/api/v0_1");            //PROD
-// app.constant("Domain_cable","ws://api.onefindr.com/cable");           //PROD_Cable
+//app.constant("Domain","http://api_staging.onefindr.com/api/v0_1");      //STAGING
+//app.constant("Domain_cable","ws://api_staging.onefindr.com/cable");     //STAGING_Cable
+ app.constant("Domain","http://api.onefindr.com/api/v0_1");            //PROD
+ app.constant("Domain_cable","ws://api.onefindr.com/cable");           //PROD_Cable
 app.config( ['uiGmapGoogleMapApiProvider', function(zippy) {
   zippy.configure({
     pakistan: true
