@@ -37,12 +37,11 @@
 </div>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAE-qjawctgMAmc2i2-UsljSsVGAMU870I"
-        type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAE-qjawctgMAmc2i2-UsljSsVGAMU870I" type="text/javascript"></script>
 <script src="https://apis.google.com/js/client.js" async defer></script>
 <!-- build:js(.) scripts/vendor.js -->
 
-<!--<script src='//maps.googleapis.com/maps/api/js?libraries=places&sensor=false'></script>-->
+<script src='//maps.googleapis.com/maps/api/js?libraries=places&sensor=false'></script>
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
@@ -85,7 +84,7 @@
 <script src="scripts/services/user_service.js"></script>
 <script src="scripts/controllers/main_ctrl.js"></script>
 <script src="scripts/controllers/sidebar_ctrl.js"></script>
-<script src="scripts/services/map.service.js"></script>
+<!--<script src="scripts/services/mapingservice.js"></script>-->
 <script src="scripts/services/dashboard_service.js"></script>
 <script src="scripts/directives/header.js"></script>
 <script src="scripts/directives/sidebar.js"></script>
@@ -129,11 +128,14 @@
 <script src="scripts/controllers/vehicle_ctrl_settings.js"></script>
 <script src="scripts/controllers/create_job_ctrl.js"></script>
 <script src="scripts/controllers/edit_location_ctrl.js"></script>
-<script src="scripts/controllers/reports_ctrl.js"></script>
+<!--<script src="scripts/controllers/reports_ctrl.js"></script>-->
+<script src="scripts/controllers/history_ctrl.js"></script>
+<script src="scripts/controllers/payment_ctrl.js"></script>
 <script src="scripts/services/reports_service.js"></script>
 <script src="scripts/services/ratings_service.js"></script>
 <script src="scripts/services/notification_service.js"></script>
 <script src="scripts/services/dispute_service.js"></script>
+<script src="scripts/services/payment_service.js"></script>
 <script src="scripts/services/conversation_service.js"></script>
 <script src="scripts/controllers/job_transaction_result.js"></script>
 <script src="scripts/controllers/choose_user_role_ctrl.js"></script>

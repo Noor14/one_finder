@@ -12,17 +12,18 @@ app.controller("MyJobsSPCtrl", ["$scope", "jobsService", "toastr", "$state",
 		$scope.currentPage   = 1;
 	    $scope.previousPage  = 1;
 		$scope.filter 		 = {};
-		$scope.job_status    = [
-			{id:1,val:'In Bidding'},
-			{id:2,val:'Bidding Closed'},
-			{id:3,val:'Not Started'},
-			{id:4,val:'Started'},
-			{id:5,val:'Not Assigned'},
-			{id:6,val:'Assigned'},
-			{id:7,val:'Recently Completed'},
-			{id:8,val:'In dispute'},
-			{id:9,val:'Signed Off'}
-		];
+    $scope.job_status = [
+      {id:1,val:'In Bidding'},
+      {id:2,val:'Bidding Closed'},
+      {id:3,val:'Not Started'},
+      {id:4,val:'Started'},
+      {id:5,val:'Not Assigned'},
+      {id:6,val:'Assigned'},
+      {id:7,val:'Recently Completed'},
+      {id:8,val:'In dispute'},
+      {id:9,val:'Signed Off'},
+      {id:10,val:'Refunded'}
+    ];
 
 		$scope.job_status_employee = [
 			{id:3,val:'Not Started'},

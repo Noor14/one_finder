@@ -1,0 +1,79 @@
+<loading-show ng-model="loader"></loading-show>
+<article id="content">
+  <header class="heading-area">
+    <h1>History</h1>
+  </header>
+  <div class="twocols">
+    <div class="col" ng-if="my_jobs.length">
+      <div class="side-widget">
+        <form class="filter-form custom-form" ng-submit="filter_jobs(filter)">
+          <fieldset>
+            <div class="side-sec">
+              <h2>Status</h2>
+              <div class="filter-row">
+                <select ng-model="filter.status" class="form-control"
+                        ng-options="status.id as status.val for status in job_status"></select>
+              </div>
+            </div>
+            <div class="side-sec">
+              <div class="filter-row">
+                <input type="submit" class="btn btn-block btn-primary" value="Filter">
+              </div>
+            </div>
+            <div class="side-sec" ng-hide="is_empty_object(filter)">
+              <div class="filter-row">
+                <input type="button" class="btn btn-block btn-danger" value="Clear Filter" ng-click="clear_filter()">
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="col" ng-if="my_jobs.length">
+      <ul class="widgets list-none jobs-list">
+        <li ng-repeat="job in my_jobs">
+          <div class="item-holder">
+            <a ui-sref="app.job_detail-gu({id: job.id})">
+              <strong class="title text-capitalize">
+                {{job.title || ' -' }}
+              </strong>
+              <div class="img-holder" ng-style="{'background-image':'url(images/placeholder.jpg)','background-repeat': 'no-repeat','background-size':'cover','background-position': 'center center'}">
+                <div ng-style="{'background-image': 'url({{ job.photos[0].url}})','height':'100%','background-size':'cover','background-repeat': 'no-repeat','background-size': 'cover','background-position': 'center center', 'height':'250px'}">
+                </div>
+              </div>
+            </a>
+            <div class="service-info">
+              <div class="txt">
+                <strong class="text-capitalize">{{job.postedBy.firstname}}</strong>
+                <p>{{job.location.city.name}} , {{job.location.country.name}}</p>
+              </div>
+            </div>
+            <ul class="service-status list-none" ng-class="{'half-status' : !job.averageBid || !job.status || !job.bidCount}">
+              <li ng-if="job.averageBid">
+                <span>{{job.averageBid}}</span>
+                <p>Avg Bid</p>
+              </li>
+              <li>
+                <span>{{get_status(job.status)}}</span>
+                <p>Status</p>
+              </li>
+              <li>
+                <span>{{job.bidCount}}</span>
+                <p>Number of Bids</p>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <div class="text-center">
+        <ul uib-pagination ng-change="changePage()" total-items="totalRecords" ng-model="currentPage"
+            items-per-page="itemsPerPage" class="pagination-md" boundary-links="true"
+            num-pages="numPages">
+        </ul>
+      </div>
+    </div>
+    <div ng-if="!my_jobs.length">
+      <h3 class="text-center">Your job history is not available</h3>
+    </div>
+  </div>
+</article>

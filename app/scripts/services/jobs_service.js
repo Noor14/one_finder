@@ -37,7 +37,25 @@
           }
         })
       },
-
+      get_my_history_jobs : function(query){
+        if($cookies.get('user_current_role') == 'general_user'){
+          var url =  Domain + '/jobs/general_user_history' + query;
+        }
+        else if($cookies.get('user_current_role') == 'service_provider'){
+          var url = Domain + '/jobs/service_provider_history' + query;
+        }
+        return $http({
+          method:'GET',
+          crossDomain: true,
+          url : url,
+          headers:{
+            'Content-Type': 'application/json',
+            'sessionToken': $cookies.get('sessionToken'),
+            'client': $cookies.get('client'),
+            'email': $cookies.get('email')
+          }
+        })
+      },
       get_my_jobs_sp: function(query){
         return $http({
           method: 'GET',
@@ -62,7 +80,7 @@
             'sessionToken': $cookies.get('sessionToken'),
             'client': $cookies.get('client'),
             'email': $cookies.get('email')
-          }          
+          }
         })
       },
 
@@ -128,7 +146,7 @@
           'sessionToken': $cookies.get('sessionToken'),
           'client': $cookies.get('client'),
           'email': $cookies.get('email')
-        }        
+        }
       })
     },
 
@@ -160,10 +178,10 @@
           'client': $cookies.get('client'),
           'email': $cookies.get('email')
         },
-        data: data        
+        data: data
       })
     },
-    
+
     start_job: function(id,data){
       return $http({
         method: 'PUT',
@@ -176,7 +194,7 @@
           'client': $cookies.get('client'),
           'email': $cookies.get('email')
         },
-        data: data        
+        data: data
       })
     },
 

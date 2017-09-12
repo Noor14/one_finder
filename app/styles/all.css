@@ -216,7 +216,7 @@ table {
 
 #sidebar ul li:first-child {
   background: #fff;
-  padding: 35px 0;
+  padding: 15px 0;
   margin: 0 0 20px;
 }
 
@@ -724,14 +724,21 @@ ul.chat li.sender .text:after {
   cursor: pointer;
   background: none;
 }
-
+.question{
+  display: flex;
+}
+.question label.radio-inline{
+  margin-left: 15px;
+}
 .filter-form {
   color: #000;
   font-size: 16px;
   line-height: 20px;
   overflow: hidden;
 }
-
+.pointer{
+  cursor: pointer;
+}
 .side-sec {
   border-bottom: 1px solid #b7b7b7;
   overflow: hidden;
@@ -3114,4 +3121,10 @@ ul.tree li {
 }
 .full-width{
   width:100% !important;
+}
+.payment{
+  padding: 20px;
+}
+.payment div.table-responsive{
+  background-color: white;
 }

@@ -117,10 +117,22 @@ function config($stateProvider, $urlRouterProvider) {
       params:{id:null},
       authorize: true
     })
-    .state('app.reports',{
-      url:'/reports',
-      templateUrl: 'views/reports.html',
-      controller: 'ReportsCtrl',
+    //.state('app.reports',{
+    //  url:'/reports',
+    //  templateUrl: 'views/reports.html',
+    //  controller: 'ReportsCtrl',
+    //  authorize: true
+    //})
+    .state('app.history',{
+      url:'/history',
+      templateUrl: 'views/history.html',
+      controller: 'HistoryCtrl',
+      authorize: true
+    })
+    .state('app.payment',{
+      url:'/payment',
+      templateUrl: 'views/payment.html',
+      controller: 'PaymentCtrl',
       authorize: true
     })
     .state('app.vehicle_detail', {
@@ -270,10 +282,10 @@ function config($stateProvider, $urlRouterProvider) {
     })
 }
 app.config(['$stateProvider','$urlRouterProvider',config]);
-//app.constant("Domain","http://api_staging.onefindr.com/api/v0_1");      //STAGING
-//app.constant("Domain_cable","ws://api_staging.onefindr.com/cable");     //STAGING_Cable
- app.constant("Domain","http://api.onefindr.com/api/v0_1");            //PROD
- app.constant("Domain_cable","ws://api.onefindr.com/cable");           //PROD_Cable
+app.constant("Domain","http://api_staging.onefindr.com/api/v0_1");      //STAGING
+app.constant("Domain_cable","ws://api_staging.onefindr.com/cable");     //STAGING_Cable
+ //app.constant("Domain","http://api.onefindr.com/api/v0_1");            //PROD
+ //app.constant("Domain_cable","ws://api.onefindr.com/cable");           //PROD_Cable
 app.config( ['uiGmapGoogleMapApiProvider', function(zippy) {
   zippy.configure({
     pakistan: true

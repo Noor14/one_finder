@@ -5,11 +5,11 @@
         	<li class="list-item" ng-repeat="ques in questions">
 			    <div>
 			        <label>
-			        	{{ques.body}} {{ques.required ? "*": ""}}
-			        	<i class="fa fa-times" ng-click="clear_answer(ques)" ng-if="!ques.required"></i>
+			        	{{ques.body}} {{(ques.required)? "*": ""}}
+			        	&nbsp; <i class="fa fa-times" ng-click="clear_answer(ques)" ng-if="ques.required"></i>
 			        </label>
-			        <div ng-repeat="answer in ques.answers">
-			            <label class="radio-inline service-question-answer">
+			        <div class="question" ng-repeat="answer in ques.answers">
+			            <strong>{{$index + 1}} .</strong><label class="radio-inline service-question-answer">
 			                <input type="radio" name="{{answer}}" ng-model="ques.ans"
 			                ng-value="answer" ng-change="enable_processbtn2a()">
 			                {{answer.body}}

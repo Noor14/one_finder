@@ -1,0 +1,38 @@
+<loading-show ng-model="pageLoader"></loading-show>
+<div id="content" class="payment">
+<div class="col-lg-10 col-lg-offset-1 table-responsive" ng-if="!pageLoader">
+<table ng-if="jobs.length" class="table table-striped">
+
+  <thead>
+  <th>Job Title</th>
+  <th>Status</th>
+  <th>Commission Rate</th>
+  <th>Amount</th>
+  </thead>
+  <tbody>
+  <tr class="pointer" ng-repeat="job in jobs" ng-click="detail(job.job_id)">
+    <td>{{job.job_title}}</td>
+    <td>{{get_status(job.status)}}</td>
+    <td>{{job.commission_rate}}</td>
+    <td>{{job.amount}}</td>
+  </tr>
+  </tbody>
+
+
+</table>
+
+
+
+    <div class="text-center" ng-hide="!jobs.length && page_no == 1" >
+      <ul uib-pagination
+          ng-change="change_page()" total-items="totalRecords" ng-model="currentPage"
+          items-per-page="itemsPerPage" class="pagination-md" boundary-links="true"
+          num-pages="numPages">
+      </ul>
+    </div>
+
+
+  <h4 class="text-center" ng-if="!jobs.length"> No payment history found</h4>
+
+</div>
+</div>

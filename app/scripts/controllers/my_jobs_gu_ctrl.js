@@ -20,7 +20,8 @@ app.controller("MyJobsGUCtrl", ["$scope", "jobsService", "toastr", "$state",
 			{id:6,val:'Assigned'},
 			{id:7,val:'Recently Completed'},
 			{id:8,val:'In dispute'},
-			{id:9,val:'Signed Off'}
+      {id:9,val:'Signed Off'},
+      {id:10,val:'Refunded'}
 		];
 
 	    function get_query_string(page, time,status) {

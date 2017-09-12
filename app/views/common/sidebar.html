@@ -56,14 +56,28 @@
         <span>Messaging</span>
       </a>
     </li>
-    <li ng-class="{ active: isCurrentPath('/app/reports') }" 
-        ng-if="user_role === 'service_provider' && user.serviceProviderDetails.type != 3">
-      <a ui-sref="app.reports">
-        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-          <span>Reports</span>
+    <!--<li ng-class="{ active: isCurrentPath('/app/reports') }"-->
+        <!--ng-if="user_role === 'service_provider' && user.serviceProviderDetails.type != 3">-->
+      <!--<a ui-sref="app.reports">-->
+        <!--<i class="fa fa-file-text-o" aria-hidden="true"></i>-->
+        <!--<span>Reports</span>-->
+      <!--</a>-->
+    <!--</li>-->
+    <li ng-class="{ active: isCurrentPath('/app/history') }"
+              ng-if="user_role === 'service_provider' || user_role === 'general_user'">
+    <a ui-sref="app.history">
+      <i class="fa fa-history" aria-hidden="true"></i>
+      <span>History</span>
+    </a>
+  </li>
+    <li ng-class="{ active: isCurrentPath('/app/payment') }"
+        ng-if="user_role === 'service_provider'">
+      <a ui-sref="app.payment">
+        <i class="fa fa-money" aria-hidden="true"></i>
+        <span>Payment</span>
       </a>
     </li>
-    <li ng-class="{ active: isCurrentPath('/app/setting') }">
+    <li ng-class="{ active: isCurrentPath('/app/setting/public-profile') }">
       <a ui-sref="app.setting.public_profile">
         <i class="fa fa-cog" aria-hidden="true"></i>
         <span>Settings</span>

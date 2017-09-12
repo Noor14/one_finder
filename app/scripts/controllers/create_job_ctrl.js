@@ -93,6 +93,7 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
 
     $scope.clear_answer = function(ques){
       ques.ans = {};
+      $scope.process_btn2a = true;
     };
     // Create Job Service selection Step
     $scope.skip_job_process_step1 = function () {
@@ -117,7 +118,7 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
     };
 
     $scope.go_back_step2_a = function(){
-      $scope.process_btn2 = true;
+      $scope.process_btn2 = false;
       $scope.job_create_step2a = false;
       $scope.job_create_step2 = true;
     };
@@ -126,7 +127,7 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
       $scope.job_create_step3 = false;
       if($scope.job_has_question){
         $scope.job_create_step2a = true;
-        $scope.process_btn2a = true;
+        $scope.process_btn2a = false;
       }else{
         $scope.job_create_step2 = true;
         $scope.process_btn2 = true;
@@ -178,6 +179,13 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
           CategoryService.list_skills_questions(service.categoryId,$scope.new_job.serviceId)
           .then(function(data){
             $scope.questions = data;
+            if($scope.questions.length){
+              $scope.questions.forEach(function(obj){
+                if(!obj.answers.length){
+                  return $scope.process_btn2a = false;
+                }
+              })
+            }
             $scope.job_create_step2 = false;
             $scope.job_create_step2a = true;
           })
