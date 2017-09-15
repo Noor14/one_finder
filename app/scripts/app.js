@@ -20,6 +20,8 @@ var app = angular
     'ngDialog',
     'ui.bootstrap',
     'ui.bootstrap.datetimepicker',
+    'socialLogin',
+    'angular-input-stars',
     'ngMap',
     'nemLogging',
     'uiGmapgoogle-maps',

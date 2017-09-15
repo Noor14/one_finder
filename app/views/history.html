@@ -4,7 +4,7 @@
     <h1>History</h1>
   </header>
   <div class="twocols">
-    <div class="col" ng-if="my_jobs.length">
+    <div class="col">
       <div class="side-widget">
         <form class="filter-form custom-form" ng-submit="filter_jobs(filter)">
           <fieldset>
@@ -29,6 +29,7 @@
         </form>
       </div>
     </div>
+
     <div class="col" ng-if="my_jobs.length">
       <ul class="widgets list-none jobs-list">
         <li ng-repeat="job in my_jobs">

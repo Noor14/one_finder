@@ -1,9 +1,13 @@
-function config($stateProvider, $urlRouterProvider) {
-
+function config($stateProvider, $urlRouterProvider, socialProvider) {
+  socialProvider.setGoogleKey("723104159784-g8l4ums5tt4oictjl1vpbkb6bst9k196.apps.googleusercontent.com");
   $urlRouterProvider.otherwise("/auth/login");
 
   $stateProvider
 
+    .state('verify', {
+      url: "/googlecfa82395216de0b8.html",
+      templateUrl: "views/googlecfa82395216de0b8.html"
+    })
   .state('app', {
     url: "/app",
     templateUrl: "views/common/full_template.html",
@@ -281,11 +285,11 @@ function config($stateProvider, $urlRouterProvider) {
       authorize: true
     })
 }
-app.config(['$stateProvider','$urlRouterProvider',config]);
+app.config(['$stateProvider', '$urlRouterProvider', 'socialProvider',config]);
 app.constant("Domain","http://api_staging.onefindr.com/api/v0_1");      //STAGING
 app.constant("Domain_cable","ws://api_staging.onefindr.com/cable");     //STAGING_Cable
- //app.constant("Domain","http://api.onefindr.com/api/v0_1");            //PROD
- //app.constant("Domain_cable","ws://api.onefindr.com/cable");           //PROD_Cable
+// app.constant("Domain","http://api.onefindr.com/api/v0_1");            //PROD
+// app.constant("Domain_cable","ws://api.onefindr.com/cable");           //PROD_Cable
 app.config( ['uiGmapGoogleMapApiProvider', function(zippy) {
   zippy.configure({
     pakistan: true

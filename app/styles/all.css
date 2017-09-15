@@ -198,11 +198,13 @@ table {
   font-size: 12px;
   line-height: 16px;
   position: fixed;
+  overflow-y: scroll;
   top: 95px;
   left: 0;
   bottom: 0;
   background: #0a1d2e;
 }
+
 
 #sidebar ul {
   padding: 20px 0;

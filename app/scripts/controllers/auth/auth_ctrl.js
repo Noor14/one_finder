@@ -1,5 +1,5 @@
-app.controller("AuthCtrl", ["AuthService", "$scope", "$cookies", "$state", "toastr", 'ngDialog',
-    function (AuthService, $scope, $cookies, $state, toastr,ngDialog) {
+app.controller("AuthCtrl", ["AuthService", "$scope", "$cookies", "$state", "toastr", 'ngDialog','$rootScope',
+    function (AuthService, $scope, $cookies, $state, toastr,ngDialog, $rootScope) {
 
         function init(){
 
@@ -150,72 +150,72 @@ app.controller("AuthCtrl", ["AuthService", "$scope", "$cookies", "$state", "toas
             });
         }
 
-        function google_login(){
+        //function google_login(){
+        //    var params = {
+        //        'clientid':'723104159784-g8l4ums5tt4oictjl1vpbkb6bst9k196.apps.googleusercontent.com',
+        //        'cookiepolicy':'single_host_origin',
+        //        'callback': function(result){
+        //            if(result.status.google_logged_in){
+        //                debugger;
+        //                var access_token  = {accessToken: result.id_token};
+        //                AuthService.google_sign_in(access_token)
+        //                .then(function(data){
+        //                    set_cookies(data);
+        //                    set_user_cookie(data.user);
+        //                    AuthService.setUserDetails(data.user);
+        //                    $scope.user_info = data.user;
+        //
+        //                    if ($scope.user_info.userType == 1) {
+        //                        set_user_role('general_user');
+        //                        $state.go('app.setting');
+        //                        toastr.success('You logged in Successfully', 'Success!');
+        //                    };
+        //
+        //                    if ($scope.user_info.userType == 2 || $scope.user_info.userType == 3) //SERVICE PROVIDER (verified and verfication pending)
+        //                        choose_user_role();
+        //                })
+        //                .catch(function (error) {
+        //                    toastr.error(error, 'Error');
+        //                });
+        //            }
+        //        },
+        //        'approvalprompt':'force',
+        //    };
+        //    gapi.auth.signIn(params);
+        //
+        //}
 
-            var params = {
-                'clientid':'723104159784-g8l4ums5tt4oictjl1vpbkb6bst9k196.apps.googleusercontent.com',
-                'cookiepolicy':'single_host_origin',
-                'callback': function(result){
-                    if(result.status.google_logged_in){
-                        var access_token  = {accessToken:result.id_token};
-                        AuthService.google_sign_in(access_token)
-                        .then(function(data){
-                            set_cookies(data);
-                            set_user_cookie(data.user);
-                            AuthService.setUserDetails(data.user);
-                            $scope.user_info = data.user;
+      $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
 
-                            if ($scope.user_info.userType == 1) {
-                                set_user_role('general_user');
-                                $state.go('app.setting');
-                                toastr.success('You logged in Successfully', 'Success!');
-                            };
+        var access_token  = {accessToken : userDetails.idToken};
+        AuthService.google_sign_in(access_token)
+          .then(function(data){
+            set_cookies(data);
+            set_user_cookie(data.user);
+            AuthService.setUserDetails(data.user);
+            $scope.user_info = data.user;
 
-                            if ($scope.user_info.userType == 2 || $scope.user_info.userType == 3) //SERVICE PROVIDER (verified and verfication pending)
-                                choose_user_role();
-                        })
-                        .catch(function (error) {
-                            toastr.error(error, 'Error');
-                        });
-                    }
-                },
-                'approvalprompt':'force',
+            if ($scope.user_info.userType == 1) {
+              set_user_role('general_user');
+              $state.go('app.setting');
+              toastr.success('You logged in Successfully', 'Success!');
             };
-            gapi.auth.signIn(params);
 
-        }
+            if ($scope.user_info.userType == 2 || $scope.user_info.userType == 3) //SERVICE PROVIDER (verified and verfication pending)
+              choose_user_role();
+          })
+          .catch(function (error) {
+            toastr.error(error, 'Error');
+          });
 
-      //$rootScope.$on('event:social-sign-in-success', function(event, userDetails){
-      //
-      //  var access_token  = {accessToken:userDetails.id_token};
-      //  AuthService.google_sign_in(access_token)
-      //    .then(function(data){
-      //      set_cookies(data);
-      //      set_user_cookie(data.user);
-      //      AuthService.setUserDetails(data.user);
-      //      $scope.user_info = data.user;
-      //
-      //      if ($scope.user_info.userType == 1) {
-      //        set_user_role('general_user');
-      //        $state.go('app.setting');
-      //        toastr.success('You logged in Successfully', 'Success!');
-      //      };
-      //
-      //      if ($scope.user_info.userType == 2 || $scope.user_info.userType == 3) //SERVICE PROVIDER (verified and verfication pending)
-      //        choose_user_role();
-      //    })
-      //    .catch(function (error) {
-      //      toastr.error(error, 'Error');
-      //    });
-      //
-      //});
+      });
 
 
         $scope.submit_login   = login;
         $scope.submit_signup  = signup;
         $scope.reset_password = forgot_password;
         $scope.fb_login       = facebook_login;
-        $scope.google_login   = google_login;
+        //$scope.google_login   = google_login;
         init();
   }
 ]);

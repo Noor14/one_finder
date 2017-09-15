@@ -6,46 +6,52 @@
                     <tr>
                         <th class="text-center">Punctuality</th>
                         <td class="text-center">
-                            <input type="number" name="punctuality" 
-                            class="form-control" ng-model="rating.punctuality" min="0" max="5">
+                          <input-stars max="5" ng-model="rating.punctuality"></input-stars>
+                            <!--<input type="number" name="punctuality" -->
+                            <!--class="form-control" ng-model="rating.punctuality" min="0" max="5">-->
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center">Quality</th>
                         <td class="text-center">
-                            <input type="number" name="quality" 
-                            class="form-control" ng-model="rating.quality" min="0" max="5">
+                          <input-stars max="5" ng-model="rating.quality"></input-stars>
+
+                          <!--<input type="number" name="quality"-->
+                            <!--class="form-control" ng-model="rating.quality" min="0" max="5">-->
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center">Service</th>
                         <td class="text-center">
-                            <input type="number" name="service" 
-                            class="form-control" ng-model="rating.service" min="0" max="5">
+                          <input-stars max="5" ng-model="rating.service"></input-stars>
+                          <!--<input type="number" name="service"-->
+                            <!--class="form-control" ng-model="rating.service" min="0" max="5">-->
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center">Politeness</th>
                         <td class="text-center">
-                            <input type="number" name="politeness" 
-                            class="form-control" ng-model="rating.politeness" min="0" max="5">
+                          <input-stars max="5" ng-model="rating.politeness"></input-stars>
+                          <!--<input type="number" name="politeness"-->
+                            <!--class="form-control" ng-model="rating.politeness" min="0" max="5">-->
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center">Overall *</th>
                         <td class="text-center">
-                            <input type="number" name="overall" 
-                            class="form-control" ng-model="rating.overall" min="0" max="5">
+                          <input-stars max="5" ng-model="rating.overall"></input-stars>
+                          <!--<input type="number" name="overall"-->
+                            <!--class="form-control" ng-model="rating.overall" min="0" max="5">-->
                         </td>
                     </tr>
                     <tr>
                         <th class="text-center">Review *</th>
                         <td class="text-center">
                             <textarea class="form-control" rows="3" ng-model="rating.review">
-                                
+
                             </textarea>
                         </td>
-                    </tr>                                
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -53,9 +59,9 @@
             <div class="col-md-12">
                 <button class="btn btn-primary btn-block" type="submit">
                     Submit Rating
-                </button>        
+                </button>
             </div>
         </div>
-    </form>  
+    </form>
 </div>
 

@@ -181,8 +181,11 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
             $scope.questions = data;
             if($scope.questions.length){
               $scope.questions.forEach(function(obj){
-                if(!obj.answers.length){
-                  return $scope.process_btn2a = false;
+                if(obj.answers.length && obj.required){
+                  return $scope.process_btn2a = true;
+                }
+                else{
+                  $scope.process_btn2a = false;
                 }
               })
             }
@@ -328,13 +331,14 @@ app.controller("createjobCtrl", ["$scope", "jobsService", "$log", 'toastr', "$st
       }
       $scope.new_job.photos.push(new_pic);
       $scope.new_job.photo = '';
-    }
+    };
 
     $scope.addJob = function (new_job) {
      $scope.loader = $scope.submitting = true;
       if($scope.job_has_question){
 
         $scope.new_job.jobQuestions = $scope.questions.map(function(q){
+          if(q.answers.length)
           return{
             questionId: q.id,
             answerId: q.ans.id

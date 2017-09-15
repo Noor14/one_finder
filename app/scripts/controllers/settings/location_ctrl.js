@@ -1,5 +1,5 @@
-app.controller("SettingLocationsCtrl", ["$scope", "$http", "toastr", 'ngDialog', '$rootScope', '$state', 'CountryCitiesService', "$timeout", 'Map', '$filter', '$rootScope', 'locationsService', 'uiGmapGoogleMapApi', '$log', 
-  function ($scope, $http, toastr, ngDialog, $rootScope, $state, CountryCitiesService, $timeout, Map, $filter, $rootScope, locationsService, uiGmapGoogleMapApi, $log) {
+app.controller("SettingLocationsCtrl", ["$scope", "$http", "toastr", 'ngDialog', '$rootScope', '$state', 'CountryCitiesService', "$timeout", 'Map', '$filter', '$rootScope', 'locationsService',
+  function ($scope, $http, toastr, ngDialog, $rootScope, $state, CountryCitiesService, $timeout, Map, $filter, $rootScope, locationsService) {
 
     $scope.$parent.tab = 12;
     var vm = this;
